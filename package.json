@@ -1,0 +1,21 @@
+{
+  "name": "balena-cli-advanced-masterclass",
+  "version": "1.0.0",
+  "description": "balenaCLI advanced masterclass application",
+  "main": "src/helloworld.js",
+  "scripts": {
+    "start": "node src/helloworld.js; sleep infinity",
+    "test": "echo \"There are no tests for this repository\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/balena-io-projects/balena-cli-advanced-masterclass.git"
+  },
+  "author": "Heds Simons <heds@balena.io>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/balena-io-projects/balena-cli-advanced-masterclass/issues"
+  },
+  "homepage": "https://github.com/balena-io-projects/balena-cli-advanced-masterclass#readme",
+  "private": "true"
+}

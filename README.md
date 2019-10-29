@@ -275,7 +275,7 @@ its UUID with the `balena device move` command:
 $ BALENARC_DATA_DIRECTORY=. balena device move 7654321
 ? Select an application (Use arrow keys)
 ❯ altApp (fincm3)
-  anotherApp (raspberry-pi) 
+  anotherApp (raspberry-pi)
 ```
 As you can see, only applications that support the device type of the device that is being moved are available. For non-interactive movement, simply pass the
 optional `--application` switch to the command with the relevant application
@@ -531,10 +531,6 @@ need writing without any interactive involvement.
 Luckily, balena CLI includes functionality to write a provisioning image to
 any attached, valid media that is exposed as a drive on the host machine.
 
->>>>> THE FOLLOWING SECTION DOES NOT WORK DUE TO A BUG
-
-https://github.com/balena-io/balena-cli/issues/1428
-
 We'll use the previously configured balenaFin image as our provisioning image.
 Connect a balenaFin for flashing to your development machine (do this by
 attaching a microUSB cable to your machine from the balenaFin, and then powering
@@ -553,10 +549,20 @@ As you can see, the balenaFin is attached to drive `/dev/disk4`. We can now use
 another balena CLI command to write the image to that drive, which will
 provision the device:
 ```
-$ balena os initialize balena-fin-image.img --type fincm3 --drive /dev/disk3 --yes
-...
+$ balena os initialize balena-fin-image.img --type fincm3 --drive /dev/disk4 --yes
+Initializing device
+
+Note: Initializing the device may ask for administrative permissions
+because we need to access the raw devices directly.
+Going to erase /dev/disk4.
+Admin privileges required: you may be asked for your computer password to continue.
+Password:
+Writing Device OS [========================] 100% eta 0s
+Validating Device OS [========================] 100% eta 0s
+You can safely remove /dev/disk4 now
 ```
-Note that you *must* supply the device type and the drive to use to write to.
+Note that you *must* supply the device type, although the drive to write to
+is optional (but you will be asked interactively if you do not supply it).
 The `--yes` switch indicates we do not want an interactive prompt confirming
 we want to write to the drive (else a warning that you will wipe whatever is
 on that drive and a confirmation prompt is given).
@@ -569,7 +575,6 @@ $ balena devices
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
 1234556 7654321 restless-glade       fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
->>>>> BUGGED SECTION END
 
 # 4. Configuring Environment Variables
 

@@ -777,7 +777,7 @@ for it, for support, application updates, etc.
 The following exercises will show you how to both preload and preregister
 devices.
 
-## 5.5 Preloading a Device Image
+## 5.1 Preloading a Device Image
 
 Note that `balena preload` actually uses a Docker container to carry out the
 actual preloading. This is to allow the system to be portable and run under
@@ -837,7 +837,7 @@ immediately started the preloaded application.
 significantly. It's well worth familiarising yourself with the options
 [here](https://github.com/balena-io/balena-cli/blob/master/doc/cli.markdown#preload).
 
-# 5.2 Preregistering a Device
+## 5.2 Preregistering a Device
 
 The preregistering of a device involves a simple call with a unique identifier
 for the device. This identifier must be made up of hex characters and must be
@@ -982,7 +982,3 @@ enough with balena CLI to:
     provisioning image with a required version of an application for
     'instant startup'
 * Update a device from one version of balenaOS to another via balena CLI
-
-# References
-
-None

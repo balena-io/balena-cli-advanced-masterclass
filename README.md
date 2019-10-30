@@ -275,9 +275,9 @@ its UUID with the `balena device move` command:
 $ BALENARC_DATA_DIRECTORY=. balena device move 7654321
 ? Select an application (Use arrow keys)
 ❯ altApp (fincm3)
+  anotherApp (raspberry-pi) 
 ```
-As you can see, only applications of the same device type are available to
-a device that is being moved. For non-interactive movement, simply pass the
+As you can see, only applications that support the device type of the device that is being moved are available. For non-interactive movement, simply pass the
 optional `--application` switch to the command with the relevant application
 name:
 ```

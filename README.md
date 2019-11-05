@@ -1,4 +1,4 @@
-balena CLI Advanced Masterclass
+Balena CLI Advanced Masterclass
 ==============================
 
 # Prerequisite Classes
@@ -23,10 +23,26 @@ and topics. This masterclass aims to build on top of that, introducing you to
 additional features that can be used to gain finer control over the
 provisioning, deployment and management of devices.
 
+If you have any questions about this masterclass as you proceed through it,
+or would like clarifications on any of the topics raised here, please do
+raise an issue as on the repository this file is container in, or contact
+us on the [balena forums](https://forums.balena.io/) where we'll be
+delighted to answer your questions.
+
+The location of the repository that contains this masterclass and all associated
+code is
+[https://github.com/balena-io-projects/balena-cli-advanced-masterclass](https://github.com/balena-io-projects/balena-cli-advanced-masterclass).
+
 # Hardware and Software Requirements
 
 It is assumed that the reader has access to the following:
 
+* A locally cloned copy of this repository
+	[Balena CLI Advanced Masterclass](https://github.com/balena-io-projects/balena-cli-advanced-masterclass)
+	Either:
+	* `git clone https://github.com/balena-io-projects/balena-cli-advanced-masterclass.git`
+	* Download ZIP file (from 'Clone or download'->'Download ZIP') and then
+		unzip it to a suitable directory
 * A balena supported device, such as a [balenaFin 1.1](https://store.balena.io/collections/developer-kit/products/balenafin-v1-1-0-developer-kit),
 	[Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
 	or [Intel NUC](https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc.html). If you don't have a device, you can emulate an Intel NUC by
@@ -263,7 +279,12 @@ Application created: altApp (fincm3, id 987654)
 ```
 We should already have a device connecting to our previous 'cliApp' (from the
 previous
-[balena CLI Masterclass](https://github.com/balena-io-projects/balena-cli-masterclass)):
+[balena CLI Masterclass](https://github.com/balena-io-projects/balena-cli-masterclass)). See the
+[Creating an Application and Provisioning a Device](https://github.com/balena-io-projects/balena-cli-masterclass#2-creating-an-application-and-provisioning-a-device)
+section to create an application and provision a device against it, if you
+haven't already done so, and wish to follow this exercise. Once a device
+is provisioned against the `cliApp` application and online, execute the
+following command:
 ```
 $ BALENARC_DATA_DIRECTORY=. balena devices
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
@@ -789,6 +810,11 @@ you want to preload (for example, if your image has a path of
 `/Work/images/my-image.img` then you'll either need to add `/Work` or
 `/Work/images` to Docker Desktop's File Sharing resources).
 
+**Important Note:** Currently, Docker for Windows and Docker for Mac only
+	ship with the 'overlay2' storage driver. This means that any application
+	image that does not use 'overlay2' as the storage driver (including those
+	for the balena Fin), can not be preloaded under these host platforms.
+
 We'll take the current `cliApp` application and preload it the
 `balena-fin-image.img` image we earlier configured and provisioned our device
 with. The `balena preload` command has a large number of switch options for
@@ -898,7 +924,7 @@ a device with it, so that device uses the same UUID.
 We'll use the command to generate a configuration as mentioned in a previous
 exercise:
 ```
-$ balena config generate --app cliApp --version 2.41.0.+rev4 --device 6053dab8dc4721ed288c8dfc79e52967 --network ethernet --appUpdatePollInterval 10 --output config.json
+$ balena config generate --app cliApp --version 2.38.0+rev1 --device 6053dab8dc4721ed288c8dfc79e52967 --network ethernet --appUpdatePollInterval 10 --output config.json
 ```
 Note the extra switch option, `--device`, which allows us to pass our
 preregistered device UUID. Part of the configuration generation will assign

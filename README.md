@@ -530,10 +530,9 @@ applications, and then using copies of a bare OS image of a particular version
 to prepare images for each of those apps.
 
 You can generate independent configuration files using the
-`balena config generate` command. This works in a similar way to the
-`balena os configure` command should only an OS version along with an
-application name or device UUID be specified, in that it will interactively ask
-for more details:
+`balena config generate` command. A mandatory OS version must be passed to this
+command, with either an application name or device UUID. It will interactively
+ask for more details:
 ```
 $ balena config generate --version 2.38.0+rev1 --application cliApp
 ? Network Connection (Use arrow keys)
@@ -551,9 +550,8 @@ following command, ensure you replace the values for `--wifiKey` and
 $ balena config generate --version 2.38.0+rev1 --application cliApp --appUpdatePollInterval 10 --network wifi --wifiSsid MyNetworkSSID --wifiKey myw1f1n3tw0rk -o wifi-config.json
 ```
 This will generate a new JSON file in the current directory. We'll now use this
-to write to the downloaded image. You can either overwrite the current config
-if you've already configured it interactively in the step above, or use the
-freshly downloaded image:
+to write to the downloaded image. Ensure you have an unconfigured image, such
+as the one we downloaded previously:
 ```
 $ balena os configure --application cliApp --config wifi-config.json balena-fin-image.img
 Configuring operating system image

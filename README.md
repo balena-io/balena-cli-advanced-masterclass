@@ -521,13 +521,6 @@ credentials for that network) that a device should connect to once booted.
 The downloading image will now be configured (with AP details if required)
 and is ready to flash the balenaFin with.
 
->>>>> THE FOLLOWING SECTION DOES NOT WORK AND NEEDS CLARIFICATION ON
-HOW IT SHOULD WORK
-
-https://github.com/balena-io/balena-cli/issues/1395
-https://github.com/balena-io/balena-cli/issues/1444
-
-
 There's another way to produce complete configured images for provisioning
 a device with, which is to produce a configuration and then injecting that
 configuration into a bare OS image.
@@ -536,9 +529,37 @@ This allows multiple configs to be generated, for example for different
 applications, and then using copies of a bare OS image of a particular version
 to prepare images for each of those apps.
 
-... Instructions on `config generate` and `os config` ...
+You can generate independent configuration files using the
+`balena config generate` command. A mandatory OS version must be passed to this
+command, with either an application name or device UUID. It will interactively
+ask for more details:
+```
+$ balena config generate --version 2.38.0+rev1 --application cliApp
+? Network Connection (Use arrow keys)
+❯ ethernet
+  wifi
+```
 
->>>>> BUGGED SECTION ENDS
+However, in most situations where you wish to programmatically define a set of
+configurations, you can use other switches to do so. We'll use the `--output`
+switch to write a JSON configuration, and a few of the network configuration
+switches to ensure it connects to a Wifi Access Point on startup. In the
+following command, ensure you replace the values for `--wifiKey` and
+`--wifiSsid` with values for your local network's Access Point:
+```
+$ balena config generate --version 2.38.0+rev1 --application cliApp --appUpdatePollInterval 10 --network wifi --wifiSsid MyNetworkSSID --wifiKey myw1f1n3tw0rk -o wifi-config.json
+```
+This will generate a new JSON file in the current directory. We'll now use this
+to write to the downloaded image. Ensure you have an unconfigured image, such
+as the one we downloaded previously:
+```
+$ balena os configure --application cliApp --config wifi-config.json balena-fin-image.img
+Configuring operating system image
+```
+
+If you want to use the same downloaded image for each new configuration, first
+make an uninitialised copy of the image, which itself can then be copied for
+each configuration you wish to initialise the image with.
 
 ## <a name="imagewriting"></a>3.3 Writing a Configured Image
 
@@ -567,8 +588,8 @@ DEVICE     SIZE      DESCRIPTION
 /dev/disk4 63.6 GB   Compute Module
 ```
 As you can see, the balenaFin is attached to drive `/dev/disk4`. We can now use
-another balena CLI command to write the image to that drive, which will
-provision the device:
+another balena CLI command to write the configured image to that drive, which
+will provision the device:
 ```
 $ balena os initialize balena-fin-image.img --type fincm3 --drive /dev/disk4 --yes
 Initializing device

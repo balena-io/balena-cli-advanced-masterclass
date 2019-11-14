@@ -25,7 +25,7 @@ provisioning, deployment and management of devices.
 
 If you have any questions about this masterclass as you proceed through it,
 or would like clarifications on any of the topics raised here, please do
-raise an issue as on the repository this file is container in, or contact
+raise an issue as on the repository this file is contained in, or contact
 us on the [balena forums](https://forums.balena.io/) where we'll be
 delighted to answer your questions.
 
@@ -47,7 +47,7 @@ It is assumed that the reader has access to the following:
 	[Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
 	or [Intel NUC](https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc.html). If you don't have a device, you can emulate an Intel NUC by
 	installing VirtualBox and following [this guide](https://www.balena.io/blog/no-hardware-use-virtualbox/)
-* A suitable text editor for developing code on your development platform (eg.
+* A suitable text editor for developing code on your development platform (e.g.
     [Visual Code](https://code.visualstudio.com/))
 * A suitable shell environment for command execution (such as `bash`)
 * A [balenaCloud](https://www.balena.io/) account
@@ -165,7 +165,7 @@ and data.
 
 However, when doing so, it merges together *all* configurations that it finds,
 with any files in the user's home directory taking precedence. To demonstrate
-using different configuration files for different environment, first remove
+using different configuration files for different environments, first remove
 the configuration files from your home directory so these do not override the
 configurations we will create:
 ```
@@ -265,13 +265,13 @@ from one application to another (for example when a major rewrite of your
 application occurs that is no longer backwards compatible with a prior version)
 or from one environment to another (perhaps you've created a locally hosted
 test environment using openBalena and now want to move from your test
-environment to a the production environment of balenaCloud).
+environment to the production environment of balenaCloud).
 
 The following exercises will show you how to carry this out.
 
 ## 2.1 Moving Devices between Applications
 
-Moving a device to another application on the same environment is extremely
+Moving a device to another application in the same environment is extremely
 easy. To demonstrate this, first create a new application for the balenaFin:
 ```
 $ BALENARC_DATA_DIRECTORY=. balena app create altApp --type fincm3
@@ -471,7 +471,7 @@ $ rm -rf balenaStaging
 $ rm -rf balenaProduction
 $ balena login
 ```
-Use your prefered login method to recreate a `~/.balenarc.yml` and
+Use your preferred login method to recreate a `~/.balenarc.yml` and
 `~/.balena/token` file in your home directory.
 
 ## 3.1 Downloading a Provisioning Image
@@ -502,7 +502,7 @@ the latest version of balenaOS for the device type would have been downloaded.
 ## 3.2 Configuring a Provisioning Image
 
 A downloaded balenaOS image via balena CLI is unconfigured, so to allow a device
-to use it as a provisoining image we need to specify, at a miniumum, which
+to use it as a provisioning image we need to specify, at a minimum, which
 application the device should be associated with.
 
 There are a few ways to achieve this. The simplest is to configure it
@@ -803,17 +803,17 @@ the services that comprise the application, meaning that on device startup
 the Supervisor can immediately start running those services without having
 to first download the images from the balena registries.
 
-Preloading on it's own is a useful feature for ensuring devices are
+Preloading on its own is a useful feature for ensuring devices are
 ready to start executing an application as soon as they're powered on, but for
 users who also want to ensure that they know about the devices that they're
 shipping it's only half the story.
 
-Preregistering a device allows the creation of individual registered to an
-application before those devices are ever physically powered on or connected
-to a network. This is extremely useful in situations such as manufacturing
-where a device may require tracking, as a specific device UUID can then be
-associated with a specific customer order, for example. This ensures that
-a customer then receives a device that already has information available
+Preregistering a device allows the creation of individually registered devices
+to an application before those devices are ever physically powered on or
+connected to a network. This is extremely useful in situations such as
+manufacturing where a device may require tracking, as a specific device UUID can
+then be associated with a specific customer order, for example. This ensures
+that a customer then receives a device that already has information available
 for it, for support, application updates, etc.
 
 The following exercises will show you how to both preload and preregister
@@ -877,7 +877,7 @@ $ balena logs 1234567890abcdef
 [Logs]    [9/18/2019, 1:11:51 PM] [main] ---> LOG_DEBUG not set, no debug mode
 [Logs]    [9/18/2019, 1:11:51 PM] [main] Hello world!
 ```
-As can be seen, no download occured for the device, but the Supervisor
+As can be seen, no download occurred for the device, but the Supervisor
 immediately started the preloaded application.
 
 `balena preload` has a wealth of switches, and can modify the device
@@ -960,7 +960,7 @@ Configuring operating system image
 Finally write it to the balenaFin, either using `balena os initialize` or
 balena Etcher.
 
-After it's been provisoned, power up the balenaFin. You'll soon see our
+After it's been provisioned, power up the balenaFin. You'll soon see our
 preregistered device come online:
 ```
 $ balena devices --application cliApp

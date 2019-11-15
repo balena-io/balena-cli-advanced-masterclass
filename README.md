@@ -72,7 +72,7 @@ $ balena version
 11.11.2
 ```
 
-# 1. Communicating with Alternative balena Environments
+## 1. Communicating with Alternative balena Environments
 
 By default, the balena CLI communicates with the production balenaCloud instance,
 using this environment to carry out operations such as application creation,
@@ -86,7 +86,7 @@ environment.
 There are a couple of ways to inform balena CLI that it should use a different
 environment.
 
-# 1.1 Environment Variable
+### 1.1 Environment Variable
 
 The easiest way to quickly ensure balena CLI uses an alternative environment to
 that of production is to use the `BALENARC_BALENA_URL` environment variable.
@@ -120,7 +120,7 @@ ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12346 appTwo            iot2000      0              0
 ```
 
-# 1.2 Configuration File
+### 1.2 Configuration File
 
 Should you just wish to use balena CLI without specifying the environment to use
 in an environment variable, you can use a configuration file instead.
@@ -148,7 +148,7 @@ Token files are saved separately and can be found in the user's home directory
 (for example under Linux, macOS and Windows Subsystem for Linux, in
 `~/.balena/token`).
 
-# 1.3 Separate Environment Configurations
+### 1.3 Separate Environment Configurations
 
 Usually when logging into an environment, the user's configuration file and
 token files are used to ensure successive commands use this information to
@@ -254,7 +254,7 @@ proceeding:
 $ cd ~/balenaProduction
 ```
 
-# 2. Moving Devices between Applications and Environments
+## 2. Moving Devices between Applications and Environments
 
 Usually you'll provision a device that will exist on a particular balena
 application or environment, as the lifecycle of that device will only make
@@ -269,7 +269,7 @@ environment to the production environment of balenaCloud).
 
 The following exercises will show you how to carry this out.
 
-## 2.1 Moving Devices between Applications
+### 2.1 Moving Devices between Applications
 
 Moving a device to another application in the same environment is extremely
 easy. To demonstrate this, first create a new application for the balenaFin:
@@ -327,13 +327,13 @@ The Supervisor on the device will remove any previously running services, as
 well as their images and any volumes associated with them and download the
 images associated with the new application before starting them.
 
-## 2.2 Moving Devices between Environments
+### 2.2 Moving Devices between Environments
 
 Moving a device between balena environments is slightly more involved,
 and differs depending on whether you're using a device running a development
 or production image.
 
-### 2.2.1 Development Devices
+#### 2.2.1 Development Devices
 
 For a device running a development image, you can use `balena leave` and
 `balena join` to carry this out.
@@ -424,7 +424,7 @@ different device type, as you may find issues when the device attempts to run
 the application code for a device without the same peripherals or system-on-chip
 layout.
 
-### 2.2.2 Production Devices
+#### 2.2.2 Production Devices
 
 >>> THIS WILL NOT WORK FOR A PRODUCTION DEVICE, BECAUSE AS SOON AS YOU USE
     `os-config leave` YOU BECOME LOCKED OUT OF THE DEVICE
@@ -449,7 +449,7 @@ devices. Future updates will move wholly to the balena CLI methodology.
 
 >>> END
 
-# 3. Downloading and Configuring a Provisioning Image using balena CLI
+## 3. Downloading and Configuring a Provisioning Image using balena CLI
 
 In the previous balena CLI masterclass, we provisioned an image by using the
 balenaCloud dashboard to download an image that could then be flashed to
@@ -474,7 +474,7 @@ $ balena login
 Use your preferred login method to recreate a `~/.balenarc.yml` and
 `~/.balena/token` file in your home directory.
 
-## 3.1 Downloading a Provisioning Image
+### 3.1 Downloading a Provisioning Image
 
 Downloading an image via balena CLI requires you to specify the type of device
 the image downloaded should be suitable for, and optionally the OS version the
@@ -499,7 +499,7 @@ greater or equal to that given, etc. See the full range of options available by
 using `balena os download --help`. If we had not specified a version, then
 the latest version of balenaOS for the device type would have been downloaded.
 
-## 3.2 Configuring a Provisioning Image
+### 3.2 Configuring a Provisioning Image
 
 A downloaded balenaOS image via balena CLI is unconfigured, so to allow a device
 to use it as a provisioning image we need to specify, at a minimum, which
@@ -561,7 +561,7 @@ If you want to use the same downloaded image for each new configuration, first
 make an uninitialised copy of the image, which itself can then be copied for
 each configuration you wish to initialise the image with.
 
-## <a name="imagewriting"></a>3.3 Writing a Configured Image
+### <a name="imagewriting"></a>3.3 Writing a Configured Image
 
 balena are the authors of [balenaEtcher](https://www.balena.io/etcher/) which
 has fast become the preferred way for millions of users across the world to
@@ -618,7 +618,7 @@ ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS 
 1234556 7654321 restless-glade       fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
 
-# 4. Configuring Environment Variables
+## 4. Configuring Environment Variables
 
 Devices using balenaOS allow the use of dynamic environment variables which
 may be updated remotely, altering the behaviour of a service container.
@@ -788,7 +788,7 @@ For device-based variables, most commands take an extra switch, `--device`
 which allows you to specify the UUID of the device you wish to make the
 variable change for.
 
-# 5. Preloading and Preregistering
+## 5. Preloading and Preregistering
 
 Whilst for many cases provisioning a device, moving it to an installation
 location and then connecting it to a stable network with Internet access is
@@ -819,7 +819,7 @@ for it, for support, application updates, etc.
 The following exercises will show you how to both preload and preregister
 devices.
 
-## 5.1 Preloading a Device Image
+### 5.1 Preloading a Device Image
 
 Note that `balena preload` actually uses a Docker container to carry out the
 actual preloading. This is to allow the system to be portable and run under
@@ -884,7 +884,7 @@ immediately started the preloaded application.
 significantly. It's well worth familiarising yourself with the options
 [here](https://github.com/balena-io/balena-cli/blob/master/doc/cli.markdown#preload).
 
-## 5.2 Preregistering a Device
+### 5.2 Preregistering a Device
 
 The preregistering of a device involves a simple call with a unique identifier
 for the device. This identifier must be made up of hex characters and must be
@@ -970,7 +970,7 @@ ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLI
 ```
 As before, the application will also start immediately as it was preloaded.
 
-# 6. Updating balenaOS
+## 6. Updating balenaOS
 
 As balena has an active Operating System team that is constantly adding new
 features and ensuring issues are resolved, it is common to see new versions

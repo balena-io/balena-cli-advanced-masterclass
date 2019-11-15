@@ -17,5 +17,5 @@
     "url": "https://github.com/balena-io-projects/balena-cli-advanced-masterclass/issues"
   },
   "homepage": "https://github.com/balena-io-projects/balena-cli-advanced-masterclass#readme",
-  "private": "true"
+  "private": true
 }

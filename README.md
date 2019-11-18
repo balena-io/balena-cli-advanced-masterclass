@@ -164,17 +164,12 @@ as well as an environment variable to determine where to store the token
 and data.
 
 However, when doing so, it merges together *all* configurations that it finds,
-with any files in the user's home directory taking precedence. To demonstrate
-using different configuration files for different environments, first remove
-the configuration files from your home directory so these do not override the
-configurations we will create:
-```
-$ rm ~/.balenarc.yml
-$ rm -rf ~/.balena
-```
+with the `balenarc.yml` file in the current working directory taking precedence
+over the user configuration file.
 
-Now, in your home directory, create two directories called `balenaProduction`
-and `balenaStaging`, and then fill in separate configuration files in each
+To demonstrate using different configuration files for different environments,
+in your home directory, create two directories called `balenaProduction` and
+`balenaStaging`, and then fill in separate configuration files in each
 directory. The following commands will do this for you:
 ```
 $ mkdir -p ~/balenaProduction

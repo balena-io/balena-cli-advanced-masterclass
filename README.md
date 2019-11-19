@@ -399,8 +399,7 @@ $ BALENARC_DATA_DIRECTORY=. balena join 192.168.1.171 --application stagingCliAp
 We can now check the devices on the staging environment to ensure it's joined
 successfully:
 ```
-$ BALENARC_DATA_DIRECTORY=. balena apps
-BALENARC_DATA_DIRECTORY=. balena devices
+$ BALENARC_DATA_DIRECTORY=. balena devices
 ID     UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME  STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 876542 3456789 purple-snowflake fincm3       stagingCliApp     Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-staging.com/devices/3456789345678934567893456789/summary
 ```
@@ -656,7 +655,7 @@ $ balena push cliApp
 [main]
 [main]     Removing intermediate container 4d780139b2de
 [main]      ---> c699891127f9
-[main]     Step 5/6 : COPY . ./
+[main]     Step 5/6 : COPY src/ ./src/
 [main]      ---> 5281bad5c22c
 [main]     Step 6/6 : CMD ["npm", "start"]
 [main]      ---> Running in fe8c19c23718

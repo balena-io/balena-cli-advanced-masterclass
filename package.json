@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/balena-io-projects/balena-cli-advanced-masterclass.git"
+    "url": "git+ssh://git@github.com/balena-io/balena-cli-advanced-masterclass.git"
   },
   "author": "Heds Simons <heds@balena.io>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/balena-io-projects/balena-cli-advanced-masterclass/issues"
+    "url": "https://github.com/balena-io/balena-cli-advanced-masterclass/issues"
   },
-  "homepage": "https://github.com/balena-io-projects/balena-cli-advanced-masterclass#readme",
+  "homepage": "https://github.com/balena-io/balena-cli-advanced-masterclass#readme",
   "private": true
 }

@@ -7,7 +7,7 @@ This masterclass builds upon knowledge that has been taught in previous classes.
 To gain the most from this masterclass, we recommend that you first undertake
 the following masterclasses:
 
-* [balena CLI Masterclass](https://github.com/balena-io-projects/balena-cli-masterclass)
+* [balena CLI Masterclass](https://github.com/balena-io/balena-cli-masterclass)
 
 **Masterclass Type:** Core
 **Maximum Expected Time To Complete:** 120 minutes
@@ -31,16 +31,16 @@ delighted to answer your questions.
 
 The location of the repository that contains this masterclass and all associated
 code is
-[https://github.com/balena-io-projects/balena-cli-advanced-masterclass](https://github.com/balena-io-projects/balena-cli-advanced-masterclass).
+[https://github.com/balena-io/balena-cli-advanced-masterclass](https://github.com/balena-io/balena-cli-advanced-masterclass).
 
 # Hardware and Software Requirements
 
 It is assumed that the reader has access to the following:
 
 * A locally cloned copy of this repository
-	[Balena CLI Advanced Masterclass](https://github.com/balena-io-projects/balena-cli-advanced-masterclass)
+	[Balena CLI Advanced Masterclass](https://github.com/balena-io/balena-cli-advanced-masterclass)
 	Either:
-	* `git clone https://github.com/balena-io-projects/balena-cli-advanced-masterclass.git`
+	* `git clone https://github.com/balena-io/balena-cli-advanced-masterclass.git`
 	* Download ZIP file (from 'Clone or download'->'Download ZIP') and then
 		unzip it to a suitable directory
 * A balena supported device, such as a [balenaFin 1.1](https://store.balena.io/collections/developer-kit/products/balenafin-v1-1-0-developer-kit),
@@ -275,8 +275,8 @@ Application created: altApp (fincm3, id 987654)
 ```
 We should already have a device connecting to our previous 'cliApp' (from the
 previous
-[balena CLI Masterclass](https://github.com/balena-io-projects/balena-cli-masterclass)). See the
-[Creating an Application and Provisioning a Device](https://github.com/balena-io-projects/balena-cli-masterclass#2-creating-an-application-and-provisioning-a-device)
+[balena CLI Masterclass](https://github.com/balena-io/balena-cli-masterclass)). See the
+[Creating an Application and Provisioning a Device](https://github.com/balena-io/balena-cli-masterclass#2-creating-an-application-and-provisioning-a-device)
 section to create an application and provision a device against it, if you
 haven't already done so, and wish to follow this exercise. Once a device
 is provisioned against the `cliApp` application and online, execute the

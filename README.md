@@ -9,8 +9,8 @@ the following masterclasses:
 
 * [balena CLI Masterclass](https://github.com/balena-io/balena-cli-masterclass)
 
-**Masterclass Type:** Core
-**Maximum Expected Time To Complete:** 120 minutes
++ **Masterclass Type:** Core
++ **Maximum Expected Time To Complete:** 120 minutes
 
 # Introduction
 
@@ -553,8 +553,8 @@ Configuring operating system image
 ```
 
 If you want to use the same downloaded image for each new configuration, first
-make an uninitialised copy of the image, which itself can then be copied for
-each configuration you wish to initialise the image with.
+make an uninitialized copy of the image, which itself can then be copied for
+each configuration you wish to initialize the image with.
 
 ### <a name="imagewriting"></a>3.3 Writing a Configured Image
 
@@ -616,7 +616,7 @@ ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS 
 ## 4. Configuring Environment Variables
 
 Devices using balenaOS allow the use of dynamic environment variables which
-may be updated remotely, altering the behaviour of a service container.
+may be updated remotely, altering the behavior of a service container.
 
 For example, suppose that we had a production device out in the field, which
 is not behaving as expected. We may want to enable extra debugging by setting
@@ -876,7 +876,7 @@ As can be seen, no download occurred for the device, but the Supervisor
 immediately started the preloaded application.
 
 `balena preload` has a wealth of switches, and can modify the device
-significantly. It's well worth familiarising yourself with the options
+significantly. It's well worth familiarizing yourself with the options
 [here](https://github.com/balena-io/balena-cli/blob/master/doc/cli.markdown#preload).
 
 ### 5.2 Preregistering a Device
@@ -1011,7 +1011,7 @@ ID      UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME STATUS IS ONLINE 
 
 # Conclusion
 
-In this masterclass, you've learnt how to use some of the more advanced
+In this masterclass, you've learned how to use some of the more advanced
 functionality that balena CLI offers. You should now be familiar and confident
 enough with balena CLI to:
 

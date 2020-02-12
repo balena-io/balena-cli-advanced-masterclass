@@ -1,7 +1,9 @@
-Balena CLI Advanced Masterclass
-==============================
+# Balena CLI Advanced Masterclass
 
-# Prerequisite Classes
+* **Masterclass Type:** Core
+* **Maximum Expected Time To Complete:** 120 minutes
+
+## Prerequisite Classes
 
 This masterclass builds upon knowledge that has been taught in previous classes.
 To gain the most from this masterclass, we recommend that you first undertake
@@ -9,10 +11,7 @@ the following masterclasses:
 
 * [balena CLI Masterclass](https://github.com/balena-io/balena-cli-masterclass)
 
-+ **Masterclass Type:** Core
-+ **Maximum Expected Time To Complete:** 120 minutes
-
-# Introduction
+## Introduction
 
 The balena Command Line Interface (balena CLI) utility consists of a number
 of commands that allow a user to develop, deploy and manage balena applications
@@ -33,16 +32,16 @@ The location of the repository that contains this masterclass and all associated
 code is
 [https://github.com/balena-io/balena-cli-advanced-masterclass](https://github.com/balena-io/balena-cli-advanced-masterclass).
 
-# Hardware and Software Requirements
+## Hardware and Software Requirements
 
 It is assumed that the reader has access to the following:
 
 * A locally cloned copy of this repository
 	[Balena CLI Advanced Masterclass](https://github.com/balena-io/balena-cli-advanced-masterclass)
 	Either:
-	* `git clone https://github.com/balena-io/balena-cli-advanced-masterclass.git`
-	* Download ZIP file (from 'Clone or download'->'Download ZIP') and then
-		unzip it to a suitable directory
+  * `git clone https://github.com/balena-io/balena-cli-advanced-masterclass.git`
+  * Download ZIP file (from 'Clone or download'->'Download ZIP') and then
+	unzip it to a suitable directory
 * A balena supported device, such as a [balenaFin 1.1](https://store.balena.io/collections/developer-kit/products/balenafin-v1-1-0-developer-kit),
 	[Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
 	or [Intel NUC](https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc.html). If you don't have a device, you can emulate an Intel NUC by
@@ -60,7 +59,7 @@ It is assumed that the reader has access to the following:
 	per-user, and also removes the need to install global dependencies using
 	`sudo`
 
-# Exercises
+## Exercises
 
 All of the following exercises assume that you are running the balena CLI from
 a suitable Unix based shell. The exercises include commands which can be run
@@ -68,12 +67,12 @@ in such a shell, and are represented by a line prefixed with `$`. Information
 returned from execution of a command may be appended under the line to show
 what might be returned. For example:
 
-```
+```shell
 $ balena version
 11.11.2
 ```
 
-## 1. Communicating with Alternative balena Environments
+### 1. Communicating with Alternative balena Environments
 
 By default, the balena CLI communicates with the production balenaCloud instance,
 using this environment to carry out operations such as application creation,
@@ -87,12 +86,13 @@ environment.
 There are a couple of ways to inform balena CLI that it should use a different
 environment.
 
-### 1.1 Environment Variable
+#### 1.1 Environment Variable
 
 The easiest way to quickly ensure balena CLI uses an alternative environment to
 that of production is to use the `BALENARC_BALENA_URL` environment variable.
 In a terminal, execute the following command:
-```
+
+```shell
 $ BALENARC_BALENA_URL=balena-staging.com balena login
  _            _
 | |__   __ _ | |  ____  _ __    __ _
@@ -108,20 +108,22 @@ Logging in to balena-staging.com
   Authentication token
   I don't have a balena account!
 ```
+
 Just like the production server, each alternative environment will require a
 login to allow balena CLI can operate. Login using your chosen method now.
 
 Once logged in, successive uses of
 `BALENARC_BALENA_URL=balena-staging.com balena` will use the saved token to
 use the alternative environment, for example:
-```
+
+```shell
 $ BALENARC_BALENA_URL=balena-staging.com balena apps
 ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12345 appOne            intel-nuc    0              0
 12346 appTwo            iot2000      0              0
 ```
 
-### 1.2 Configuration File
+#### 1.2 Configuration File
 
 Should you just wish to use balena CLI without specifying the environment to use
 in an environment variable, you can use a configuration file instead.
@@ -130,16 +132,20 @@ By default, balena CLI looks for a configuration file in the user's home
 directory. We can demonstrate configuring balena CLI for an alternative
 environment by creating a new file as `~/.balenarc.yml` and then filling
 it with the following information:
-```
+
+```yaml
 balenaUrl: 'balena-staging.com'
 ```
+
 Now try listing the apps from the staging environment again:
-```
+
+```shell
 $ balena apps
 ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12345 appOne            intel-nuc    0              0
 12346 appTwo            iot2000      0              0
 ```
+
 Two things have happened here. The first is that balena CLI has found and used
 the new balena environment URL from the `~/.balenarc.yml` configuration file.
 The second is that it has used the token previously retrieved from logging in
@@ -149,7 +155,7 @@ Token files are saved separately and can be found in the user's home directory
 (for example under Linux, macOS and Windows Subsystem for Linux, in
 `~/.balena/token`).
 
-### 1.3 Separate Environment Configurations
+#### 1.3 Separate Environment Configurations
 
 Usually when logging into an environment, the user's configuration file and
 token files are used to ensure successive commands use this information to
@@ -172,12 +178,14 @@ To demonstrate using different configuration files for different environments,
 in your home directory, create two directories called `balenaProduction` and
 `balenaStaging`, and then fill in separate configuration files in each
 directory. The following commands will do this for you:
-```
+
+```shell
 $ mkdir -p ~/balenaProduction
 $ mkdir -p ~/balenaStaging
 $ echo "balenaUrl: 'balena-staging.com'" > ~/balenaStaging/balenarc.yml
 $ echo "balenaUrl: 'balena-cloud.com'" > ~/balenaProduction/balenarc.yml
 ```
+
 Note that we do *not* prefix the `balenarc.yml` file with a `.` to avoid hiding
 it.
 
@@ -186,7 +194,8 @@ to store data such as the authentication token for the current environment.
 Using this and then logging into the relevant service will store an
 authentication token in the appropriate directory. Run the following in a
 terminal to login to the production environment:
-```
+
+```shell
 $ cd ~/balenaProduction
 $ BALENARC_DATA_DIRECTORY=. balena login
  _            _
@@ -203,10 +212,12 @@ Logging in to balena-cloud.com
   Authentication token
   I don't have a balena account!
 ```
+
 Login using your preferred method. Note that a new `token` file now exists in
 the `~/balenaProduction` directory. Now login to the staging directory, using
 the staging configuration directory:
-```
+
+```shell
 $ cd ~/balenaStaging
 $ BALENARC_DATA_DIRECTORY=. balena login
  _            _
@@ -223,12 +234,14 @@ Logging in to balena-staging.com
   Authentication token
   I don't have a balena account!
 ```
+
 This time, a `token` file was created in the `~/balenaStaging` directory.
 
 You can now switch between environments by changing directory to the one
 with the relevant `balenarc.yml` and `token` file, which will allow you
 to use either environment without any further authentication:
-```
+
+```shell
 $ cd ~/balenaStaging
 $ BALENARC_DATA_DIRECTORY=. balena apps
 ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
@@ -246,11 +259,12 @@ We'll be using the two separate environments in the next set of exercises
 to show you how devices can be moved between applications and environments.
 As such, ensure you're in the `~/balenaProduction` directory before
 proceeding:
-```
+
+```shell
 $ cd ~/balenaProduction
 ```
 
-## 2. Moving Devices between Applications and Environments
+### 2. Moving Devices between Applications and Environments
 
 Usually you'll provision a device that will exist on a particular balena
 application or environment, as the lifecycle of that device will only make
@@ -265,14 +279,16 @@ environment to the production environment of balenaCloud).
 
 The following exercises will show you how to carry this out.
 
-### 2.1 Moving Devices between Applications
+#### 2.1 Moving Devices between Applications
 
 Moving a device to another application in the same environment is extremely
 easy. To demonstrate this, first create a new application for the balenaFin:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena app create altApp --type fincm3
 Application created: altApp (fincm3, id 987654)
 ```
+
 We should already have a device connecting to our previous 'cliApp' (from the
 previous
 [balena CLI Masterclass](https://github.com/balena-io/balena-cli-masterclass)). See the
@@ -281,29 +297,36 @@ section to create an application and provision a device against it, if you
 haven't already done so, and wish to follow this exercise. Once a device
 is provisioned against the `cliApp` application and online, execute the
 following command:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena devices
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
 1234556 7654321 weathered-wildflower fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
+
 To interactively determine which application to move a device to, simply use
 its UUID with the `balena device move` command:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena device move 7654321
 ? Select an application (Use arrow keys)
 ❯ altApp (fincm3)
   anotherApp (raspberry-pi)
 ```
+
 As you can see, only applications that support the device type of the device that is being moved are available. For non-interactive movement, simply pass the
 optional `--application` switch to the command with the relevant application
 name:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena device move 94095f8 --application altApp
 94095f8 was moved to altApp
 ```
+
 A call of `balena device` specifying the UUID of the moved device will now
 show it is owned by the specified application:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena device 7654321
 == WEATHERED WILDFLOWER
 ID:                 1693707
@@ -319,17 +342,18 @@ IS WEB ACCESSIBLE:  false
 OS VERSION:         balenaOS 2.38.0+rev1
 DASHBOARD URL:      https://dashboard.balena-cloud.com/devices/76543217654321765432176543217654/summary
 ```
+
 The Supervisor on the device will remove any previously running services, as
 well as their images and any volumes associated with them and download the
 images associated with the new application before starting them.
 
-### 2.2 Moving Devices between Environments
+#### 2.2 Moving Devices between Environments
 
 Moving a device between balena environments is slightly more involved,
 and differs depending on whether you're using a device running a development
 or production image.
 
-#### 2.2.1 Development Devices
+##### 2.2.1 Development Devices
 
 For a device running a development image, you can use `balena leave` and
 `balena join` to carry this out.
@@ -341,7 +365,8 @@ using either balenaEtcher or [balena CLI](#imagewriting).
 
 Once the device is provisioned and has connected to the balena network,
 discover its hostname or IP address by using `balena devices`:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena devices
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1234567 7654321 little-paper     fincm3          cliApp           Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/76543217654321765432176543217654/summary
@@ -361,12 +386,15 @@ IS WEB ACCESSIBLE:  false
 OS VERSION:         balenaOS 2.38.0+rev1
 DASHBOARD URL:      https://dashboard.balena-cloud.com/devices/76543217654321765432176543217654/summary
 ```
+
 As we now have the local IP address for it, we can use this to call the command
 to leave the balenaCloud environment:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena leave 192.168.1.171
 [Success] Device successfully left the platform.
 ```
+
 The device now becomes *unmanaged*. This means it acts in the same way as
 a device that has been provisioned with an unconfigured balenaOS image, for
 example one that has been downloaded from
@@ -376,34 +404,43 @@ We can now join a different balena environment by using balena CLI to login
 to it. As we previously did this for our staging environment, we can simply
 use the data and tokens we saved for this by changing directories and using
 the other environment information:
-```
+
+```shell
 $ cd ~/balenaStaging
 ```
+
 We'll now create a new application on the staging environment to move the
 device to:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena app create stagingCliApp --type fincm3
 Application created: stagingCliApp (fincm3, id 97654)
 ```
+
 Finally, we'll issue a command to the now unmanaged device to join the staging
 environment and the `stagingCliApp` application:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena join 192.168.1.171 --application stagingCliApp
 ? Check for updates every X minutes 10
 [Success] Device successfully joined balena-staging.com!
 ```
+
 We can now check the devices on the staging environment to ensure it's joined
 successfully:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena devices
 ID     UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME  STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 876542 3456789 purple-snowflake fincm3       stagingCliApp     Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-staging.com/devices/3456789345678934567893456789/summary
 ```
+
 As can be seen, it's been given a new name and UUID.
 
 If we hadn't specified the application to join, we would have seen an
 interactive list of all the applications on the staging environment:
-```
+
+```shell
 $ BALENARC_DATA_DIRECTORY=. balena join 192.168.1.171
 ? Select application
 ❯ heds/artik530
@@ -412,6 +449,7 @@ $ BALENARC_DATA_DIRECTORY=. balena join 192.168.1.171
   heds/switchapp
   heds/vpn-changed
 ```
+
 Note that the applications listed are not all of the `fincm3` device type, but
 share a common architecture, so this could be `aarch64`, `armv7hf` or `armv6`
 for the Fin. You should be very careful when selecting an application of a
@@ -419,7 +457,7 @@ different device type, as you may find issues when the device attempts to run
 the application code for a device without the same peripherals or system-on-chip
 layout.
 
-#### 2.2.2 Production Devices
+##### 2.2.2 Production Devices
 
 >>> THIS WILL NOT WORK FOR A PRODUCTION DEVICE, BECAUSE AS SOON AS YOU USE
     `os-config leave` YOU BECOME LOCKED OUT OF THE DEVICE
@@ -444,7 +482,7 @@ devices. Future updates will move wholly to the balena CLI methodology.
 
 >>> END
 
-## 3. Downloading and Configuring a Provisioning Image using balena CLI
+### 3. Downloading and Configuring a Provisioning Image using balena CLI
 
 In the previous balena CLI masterclass, we provisioned an image by using the
 balenaCloud dashboard to download an image that could then be flashed to
@@ -460,16 +498,17 @@ However, to start with, as we're not going to use separate environments again,
 we'll remove the previous setups for production and staging environments and
 move back to a single set of environment configuration files.
 
-```
+```shell
 $ cd ~
 $ rm -rf balenaStaging
 $ rm -rf balenaProduction
 $ balena login
 ```
+
 Use your preferred login method to recreate a `~/.balenarc.yml` and
 `~/.balena/token` file in your home directory.
 
-### 3.1 Downloading a Provisioning Image
+#### 3.1 Downloading a Provisioning Image
 
 Downloading an image via balena CLI requires you to specify the type of device
 the image downloaded should be suitable for, and optionally the OS version the
@@ -477,13 +516,15 @@ image should use and output path.
 
 We'll use the balenaCloud environment again, so first change back to the
 root repository for this masterclass and login to balenaCloud, for example:
-```
+
+```shell
 $ cd ~/balena-cli-advanced-masterclass
 ```
 
 Now we'll download the latest balenaOS image for the balenaFin, and determine
 the filename that it will be saved as:
-```
+
+```shell
 $ balena os download fincm3 --version 2.38.0+rev1 --output balena-fin-image.img
 ```
 
@@ -494,7 +535,7 @@ greater or equal to that given, etc. See the full range of options available by
 using `balena os download --help`. If we had not specified a version, then
 the latest version of balenaOS for the device type would have been downloaded.
 
-### 3.2 Configuring a Provisioning Image
+#### 3.2 Configuring a Provisioning Image
 
 A downloaded balenaOS image via balena CLI is unconfigured, so to allow a device
 to use it as a provisioning image we need to specify, at a minimum, which
@@ -503,13 +544,15 @@ application the device should be associated with.
 There are a few ways to achieve this. The simplest is to configure it
 interactively, passing either an application name or device UUID so that
 the relevant application can be determined:
-```
+
+```shell
 $ balena os configure balena-fin-image.img --app cliApp
 Configuring operating system image
 ? Network Connection (Use arrow keys)
 ❯ ethernet
   wifi
 ```
+
 Should you select `wifi`, then you'll be asked to enter the wireless SSID (and
 credentials for that network) that a device should connect to once booted.
 
@@ -528,7 +571,8 @@ You can generate independent configuration files using the
 `balena config generate` command. A mandatory OS version must be passed to this
 command, with either an application name or device UUID. It will interactively
 ask for more details:
-```
+
+```shell
 $ balena config generate --version 2.38.0+rev1 --application cliApp
 ? Network Connection (Use arrow keys)
 ❯ ethernet
@@ -541,13 +585,16 @@ switch to write a JSON configuration, and a few of the network configuration
 switches to ensure it connects to a Wifi Access Point on startup. In the
 following command, ensure you replace the values for `--wifiKey` and
 `--wifiSsid` with values for your local network's Access Point:
-```
+
+```shell
 $ balena config generate --version 2.38.0+rev1 --application cliApp --appUpdatePollInterval 10 --network wifi --wifiSsid MyNetworkSSID --wifiKey myw1f1n3tw0rk -o wifi-config.json
 ```
+
 This will generate a new JSON file in the current directory. We'll now use this
 to write to the downloaded image. Ensure you have an unconfigured image, such
 as the one we downloaded previously:
-```
+
+```shell
 $ balena os configure --application cliApp --config wifi-config.json balena-fin-image.img
 Configuring operating system image
 ```
@@ -556,7 +603,7 @@ If you want to use the same downloaded image for each new configuration, first
 make an uninitialized copy of the image, which itself can then be copied for
 each configuration you wish to initialize the image with.
 
-### <a name="imagewriting"></a>3.3 Writing a Configured Image
+#### 3.3 Writing a Configured Image
 
 balena are the authors of [balenaEtcher](https://www.balena.io/etcher/) which
 has fast become the preferred way for millions of users across the world to
@@ -576,16 +623,19 @@ development machine if using a different device type. This will expose a device
 node or mount point, referred to in balena CLI as a 'drive', depending on the OS
 you're running. You can discover which drive has been assigned by running
 the following:
-```
+
+```shell
 $ balena util available-drives
 DEVICE     SIZE      DESCRIPTION
 /dev/disk2 1000.2 GB Seagate BUP Slim BL Media
 /dev/disk4 63.6 GB   Compute Module
 ```
+
 As you can see, the balenaFin is attached to drive `/dev/disk4`. We can now use
 another balena CLI command to write the configured image to that drive, which
 will provision the device:
-```
+
+```shell
 $ balena os initialize balena-fin-image.img --type fincm3 --drive /dev/disk4 --yes
 Initializing device
 
@@ -598,6 +648,7 @@ Writing Device OS [========================] 100% eta 0s
 Validating Device OS [========================] 100% eta 0s
 You can safely remove /dev/disk4 now
 ```
+
 Note that you *must* supply the device type, although the drive to write to
 is optional (but you will be asked interactively if you do not supply it).
 The `--yes` switch indicates we do not want an interactive prompt confirming
@@ -607,13 +658,14 @@ on that drive and a confirmation prompt is given).
 Once provisioned, reset the balenaFin by powering it off, removing the USB
 cable from the host machine and then repowering the Fin. Shortly afterwards, it
 will connect to balenaCloud:
-```
+
+```shell
 $ balena devices
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
 1234556 7654321 restless-glade       fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
 
-## 4. Configuring Environment Variables
+### 4. Configuring Environment Variables
 
 Devices using balenaOS allow the use of dynamic environment variables which
 may be updated remotely, altering the behavior of a service container.
@@ -625,7 +677,8 @@ and start verbose logging.
 
 We'll start by pushing code to our balenaFin, reusing our previous `cliApp`
 application but using the code from this masterclass:
-```
+
+```shell
 $ balena push cliApp
 [Info]     Starting build for cliApp, user heds
 [Info]     Dashboard link: https://dashboard.balena-cloud.com/apps/1234567/devices
@@ -693,8 +746,10 @@ $ balena push cliApp
 			           <.'_.''
 			             <'
 ```
+
 Once built and pushed to the balenaFin, you should see the following logs:
-```
+
+```shell
 $ balena logs 1234567
 [Logs]    [9/17/2019, 10:55:21 AM] Installing service 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
 [Logs]    [9/17/2019, 10:55:21 AM] Installed service 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
@@ -707,25 +762,31 @@ $ balena logs 1234567
 [Logs]    [9/17/2019, 10:55:24 AM] [main] ---> LOG_DEBUG not set, no debug mode
 [Logs]    [9/17/2019, 10:55:24 AM] [main] Hello world!
 ```
+
 As you can see, it looks like if we set the `LOG_DEBUG` environment variable,
 we'll get some debug logging. So let's use `balena env` to do this:
-```
+
+```shell
 $ balena env add LOG_DEBUG true --application cliApp
 ```
+
 Now go to the dashboard for the `cliApp` application, and select 'Environment
 Variables'. 'Add' a new variable, called `DASH_VAR` and set it to `from-dash`.
 To verify we've now set our variables, let's use `balena envs` which will show
 all the environment variables set for our application:
-```
+
+```shell
 $ balena envs --application cliApp
 ID     NAME      VALUE
 123456 DASH_VAR  from-dash
 654321 LOG_DEBUG true
 ```
+
 As you can see, both variables now show up in our list.
 However, if we now list the logs for the balenaFin, we'll see something else
 (note that currently for `logs` you need to supply the full UUID of the device):
-```
+
+```shell
 $ balena logs 1234567890abcdef
 [Logs]    [9/17/2019, 10:55:24 AM] [main] Hello world!
 [Logs]    [9/17/2019, 10:57:34 AM] Killing service 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
@@ -742,6 +803,7 @@ $ balena logs 1234567890abcdef
 [Logs]    [9/17/2019, 10:57:39 AM] [main] ---> This is debug mode!
 [Logs]    [9/17/2019, 10:57:39 AM] [main] Hello world!
 ```
+
 When we set the environment variable, the Supervisor on the device noted that
 the value had been added and restarted the service container to ensure the
 new environment variable was set, as a result we now see the extra debug log
@@ -749,17 +811,20 @@ text `[main] ---> This is debug mode!`.
 This also occurs whenever the value of an environment variable is changed,
 or the environment variable is deleted. We'll try this now, by specifying the
 ID of the variable we want to remove:
-```
+
+```shell
 $ balena env rm 654321 --yes
 $ balena envs --application cliApp
 ID     NAME      VALUE
 123456 DASH_VAR  from-dash
 ```
+
 Note that we used the `--yes` switch to force the deletion of the variable.
 Without this, we would have been asked interactively to confirm the deletion.
 Wait a little while to let the Supervisor see that the environment variable
 has been deleted, and then look at the logs again:
-```
+
+```shell
 $ balena logs 1234567890abcdef
 [Logs]    [9/17/2019, 11:06:37 AM] Killing service 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
 [Logs]    [9/17/2019, 11:06:38 AM] Service exited 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
@@ -775,6 +840,7 @@ $ balena logs 1234567890abcdef
 [Logs]    [9/17/2019, 11:06:42 AM] [main] ---> LOG_DEBUG not set, no debug mode
 [Logs]    [9/17/2019, 11:06:42 AM] [main] Hello world!
 ```
+
 We're back to no debug logs again!
 
 The balena CLI also allows you to rename environment variables, as well as set
@@ -783,7 +849,7 @@ For device-based variables, most commands take an extra switch, `--device`
 which allows you to specify the UUID of the device you wish to make the
 variable change for.
 
-## 5. Preloading and Preregistering
+### 5. Preloading and Preregistering
 
 Whilst for many cases provisioning a device, moving it to an installation
 location and then connecting it to a stable network with Internet access is
@@ -814,7 +880,7 @@ for it, for support, application updates, etc.
 The following exercises will show you how to both preload and preregister
 devices.
 
-### 5.1 Preloading a Device Image
+#### 5.1 Preloading a Device Image
 
 Note that `balena preload` actually uses a Docker container to carry out the
 actual preloading. This is to allow the system to be portable and run under
@@ -837,7 +903,8 @@ with. The `balena preload` command has a large number of switch options for
 catering with different situations, including the ability to use a particular
 release. However, for this exercise, we'll simply use the latest version of
 the code we previously pushed to `cliApp`. In a terminal, execute the following:
-```
+
+```shell
 $ balena preload balena-fin-image.img --app cliApp --commit latest
 Building Docker preloader image. [========================] 100%
 / Creating preloader container
@@ -848,13 +915,15 @@ Building Docker preloader image. [========================] 100%
 Pulling 1 image [========================] 100%
 \ Cleaning up temporary files
 ```
+
 If we hadn't specified the `latest` commit, we'd have been given an interactive
 list of all of them to select from.
 
 Now provision your balenaFin using the resulting image using
 `balena os initialize` or balenaEtcher. Once booted, acquire the full UUID for
 the device (eg. `1234567890abcdef`) and then look at the logs for that device:
-```
+
+```shell
 $ balena logs 1234567890abcdef
 [Logs]    [9/18/2019, 1:11:42 PM] Supervisor starting
 [Logs]    [9/18/2019, 1:11:43 PM] Applying configuration change {"SUPERVISOR_POLL_INTERVAL":"900000"}
@@ -872,6 +941,7 @@ $ balena logs 1234567890abcdef
 [Logs]    [9/18/2019, 1:11:51 PM] [main] ---> LOG_DEBUG not set, no debug mode
 [Logs]    [9/18/2019, 1:11:51 PM] [main] Hello world!
 ```
+
 As can be seen, no download occurred for the device, but the Supervisor
 immediately started the preloaded application.
 
@@ -879,7 +949,7 @@ immediately started the preloaded application.
 significantly. It's well worth familiarizing yourself with the options
 [here](https://github.com/balena-io/balena-cli/blob/master/doc/cli.markdown#preload).
 
-### 5.2 Preregistering a Device
+#### 5.2 Preregistering a Device
 
 The preregistering of a device involves a simple call with a unique identifier
 for the device. This identifier must be made up of hex characters and must be
@@ -891,7 +961,8 @@ image to the balenaFin.
 
 We'll verify that we're registering a device by first listing the devices
 currently associated with the `cliApp` application:
-```
+
+```shell
 $ balena devices --application cliApp
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
@@ -900,17 +971,21 @@ ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLI
 First, generate a key. The `hexdump` utility is fairly ubiquitous between
 both Linux and macOS (and in Windows is in most distributions compatible with
 Windows Subsystem for Linux), and this will allow us to create a suitable key:
-```
+
+```shell
 $ hexdump -n 32 -e '"%0x"' /dev/random | head -c 32 && printf '\n'
 6053dab8dc4721ed288c8dfc79e52967
 ```
+
 This gives us a random, 32 character UUID which we can now use to register a
 device that (hopefully) doesn't yet exist. In your terminal, execute the
 following:
-```
+
+```shell
 $ balena device register cliApp --uuid 6053dab8dc4721ed288c8dfc79e52967
 Registering to cliApp: 6053dab8dc4721ed288c8dfc79e52967
 ```
+
 Note that if we had not used the `--uuid` switch, then a random UUID would have
 been generated and reported back to us.
 
@@ -919,17 +994,21 @@ in no way guaranteed to be unique, so what if we regenerate the same UUID in
 another run? The API knows that each UUID must be unique, and if we were to try
 and register a UUID that already exists, it would be rejected. We can try this
 now:
-```
+
+```shell
 $ balena device register cliApp --uuid 6053dab8dc4721ed288c8dfc79e52967
 BalenaRequestError: Request error: "uuid" must be unique.
 ```
+
 Now we'll look at the device list for the application again:
-```
+
+```shell
 $ balena devices --application cliApp
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 1699866 93b40bc late-sunset raspberrypi4-64 pi4test                 false                                             https://dashboard.balena-cloud.com/devices/93b40bc440cfccc6d45fa8db4a777a06/summary
 ```
+
 As you can see, we now have a newly registered device that has never been
 powered on.
 
@@ -939,33 +1018,39 @@ a device with it, so that device uses the same UUID.
 
 We'll use the command to generate a configuration as mentioned in a previous
 exercise:
-```
+
+```shell
 $ balena config generate --app cliApp --version 2.38.0+rev1 --device 6053dab8dc4721ed288c8dfc79e52967 --network ethernet --appUpdatePollInterval 10 --output config.json
 ```
+
 Note the extra switch option, `--device`, which allows us to pass our
 preregistered device UUID. Part of the configuration generation will assign
 a new internal ID for the device, and produce a configuration that can now
 be used by a device.
 
 Now inject the configuration into the image:
-```
+
+```shell
 $ balena os configure balena-fin-image.img --config config.json --device 6053dab8dc4721ed288c8dfc79e52967
 Configuring operating system image
 ```
+
 Finally write it to the balenaFin, either using `balena os initialize` or
 balena Etcher.
 
 After it's been provisioned, power up the balenaFin. You'll soon see our
 preregistered device come online:
-```
+
+```shell
 $ balena devices --application cliApp
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 1699866 93b40bc late-sunset      fincm3          cliApp           Idle   true      10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/93b40bc440cfccc6d45fa8db4a777a06/summary
 ```
+
 As before, the application will also start immediately as it was preloaded.
 
-## 6. Updating balenaOS
+### 6. Updating balenaOS
 
 As balena has an active Operating System team that is constantly adding new
 features and ensuring issues are resolved, it is common to see new versions
@@ -982,18 +1067,22 @@ your balenaFin with it (either via balenaEtcher of `balena os initialize`).
 
 Once the device is online and connected to the balenaCloud infrastructure,
 verify this with:
-```
+
+```shell
 $ balena devices --application cliApp
 ID      UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false      9.14.0             balenaOS 2.36.0+rev2 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
+
 We'll now update the device to the latest version of balenaOS. We can do this
 using the following command:
-```
+
+```shell
 $ balena device os-update f1dd777 --version 2.38.0+rev1.prod --yes
 Updating the OS of empty-sun to v2.38.0+rev1.prod [======================  ] 90%
 The device empty-sun has been updated to v2.38.0+rev1.prod and will restart shortly!
 ```
+
 If you look at the device in the balenaCloud dashboard whilst the command is
 executing, you'll see the progress as if you'd run the update from there (and
 obviously the balena CLI command also shows you the current progress).
@@ -1003,13 +1092,14 @@ choose the version we wanted to update the device with. Additionally, the
 `--yes` switch ensures we are not interactively asked to confirm the update.
 
 Finally, let's run `balena device` again to see the new version of the device:
-```
+
+```shell
 $ balena device --application cliApp
 ID      UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
 
-# Conclusion
+## Conclusion
 
 In this masterclass, you've learned how to use some of the more advanced
 functionality that balena CLI offers. You should now be familiar and confident

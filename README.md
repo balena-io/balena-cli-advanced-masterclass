@@ -1006,7 +1006,7 @@ Now we'll look at the device list for the application again:
 $ balena devices --application cliApp
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
-1699866 93b40bc late-sunset raspberrypi4-64 pi4test                 false                                             https://dashboard.balena-cloud.com/devices/93b40bc440cfccc6d45fa8db4a777a06/summary
+6053dab 93b40bc late-sunset raspberrypi4-64 pi4test                 false                                             https://dashboard.balena-cloud.com/devices/6053dab8dc4721ed288c8dfc79e52967/summary
 ```
 
 As you can see, we now have a newly registered device that has never been

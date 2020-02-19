@@ -86,7 +86,7 @@ environment.
 There are a couple of ways to inform balena CLI that it should use a different
 environment.
 
-*Please note that environments are isolated and thus you can't use the same user account interchangeably. You need to create a different account for each environment.*
+*Please note that environments are isolated and thus you can't use the same user account interchangeably. You need to create a different account for each environment, thus before proceeding with the guide ensure that you have an account for balena-staging.*
 
 #### 1.1 Environment Variable
 

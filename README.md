@@ -1091,10 +1091,10 @@ If we hadn't passed the `--version` switch, balena CLI would have asked us to
 choose the version we wanted to update the device with. Additionally, the
 `--yes` switch ensures we are not interactively asked to confirm the update.
 
-Finally, let's run `balena device` again to see the new version of the device:
+Finally, let's run `balena devices` again to see the new version of the device:
 
 ```shell
-$ balena device --application cliApp
+$ balena devices --application cliApp
 ID      UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```

@@ -24,7 +24,7 @@ provisioning, deployment and management of devices.
 
 If you have any questions about this masterclass as you proceed through it,
 or would like clarifications on any of the topics raised here, please do
-raise an issue as on the repository this file is contained in, or contact
+raise an issue on the repository this file is contained in, or contact
 us on the [balena forums](https://forums.balena.io/) where we'll be
 delighted to answer your questions.
 
@@ -49,7 +49,7 @@ It is assumed that the reader has access to the following:
 * A suitable text editor for developing code on your development platform (e.g.
     [Visual Code](https://code.visualstudio.com/))
 * A suitable shell environment for command execution (such as `bash`)
-* A [balenaCloud](https://www.balena.io/) account
+* A [balenaCloud](https://dashboard.balena-cloud.com/signup) account, and a [balenaCloud staging](https://dashboard.balena-staging.com/signup) account
 * A local installation of [Docker](https://docs.docker.com/v17.09/engine/installation/)
 	as well as a familiarity with [Dockerfiles](https://docs.docker.com/engine/reference/builder/)
 * Should you wish to install via `npm`, a [NodeJS](https://nodejs.org/en/)
@@ -361,7 +361,7 @@ For a device running a development image, you can use `balena leave` and
 First, provision a device using a development image. You can do this using
 the balenaCloud dashboard and downloading a 'Development' edition image from
 the `cliApp` application page. Provision your balenaFin with this image
-using either balenaEtcher or [balena CLI](#imagewriting).
+using either [balenaEtcher](https://www.balena.io/etcher/) or [balena CLI](#imagewriting).
 
 Once the device is provisioned and has connected to the balena network,
 discover its hostname or IP address by using `balena devices`:

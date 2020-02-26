@@ -22,6 +22,13 @@ and topics. This masterclass aims to build on top of that, introducing you to
 additional features that can be used to gain finer control over the
 provisioning, deployment and management of devices.
 
+In this masterclass, you will learn how to:
+
+* Work with different balenaCloud environments
+* Preconfigure and preregister downloaded images
+* Preload downloaded images with your application code
+* Update balenaOS programmatically
+
 If you have any questions about this masterclass as you proceed through it,
 or would like clarifications on any of the topics raised here, please do
 raise an issue on the repository this file is contained in, or contact

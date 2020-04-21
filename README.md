@@ -904,7 +904,7 @@ you want to preload (for example, if your image has a path of
 	image that does not use 'overlay2' as the storage driver (including those
 	for the balena Fin), can not be preloaded under these host platforms.
 
-We'll take the current `cliApp` application and preload it the
+We'll take the current `cliApp` application and preload it into the same
 `balena-fin-image.img` image we earlier configured and provisioned our device
 with. The `balena preload` command has a large number of switch options for
 catering with different situations, including the ability to use a particular

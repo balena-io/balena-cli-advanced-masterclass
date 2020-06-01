@@ -975,12 +975,12 @@ ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLI
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
 
-First, generate a key. The `hexdump` utility is fairly ubiquitous between
+First, generate a key. The `openssl` utility is fairly ubiquitous between
 both Linux and macOS (and in Windows is in most distributions compatible with
 Windows Subsystem for Linux), and this will allow us to create a suitable key:
 
 ```shell
-$ hexdump -n 32 -e '"%0x"' /dev/random | head -c 32 && printf '\n'
+$ openssl rand -hex 16
 6053dab8dc4721ed288c8dfc79e52967
 ```
 

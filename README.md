@@ -174,12 +174,13 @@ not production).
 
 To enable this, balena CLI includes the ability to use a configuration file in
 the current working directory (CWD) to determine which environment to use,
-as well as an environment variable to determine where to store the token
-and data.
+as well as to point to alternative data directories where authentication
+(login) tokens are stored.
 
-However, when doing so, it merges together *all* configurations that it finds,
-with the `balenarc.yml` file in the current working directory taking precedence
-over the user configuration file.
+When a configuration file is found in the current working directory, the CLI
+merges it with all other configuration sources, such as the `~/.balenarc.yml`
+file in the home dir. Settings defined in the `balenarc.yml` file in the current
+working directory take precedence over settings defined in `~/.balenarc.yml`.
 
 To demonstrate using different configuration files for different environments,
 in your home directory, create two directories called `balenaProduction` and
@@ -188,23 +189,26 @@ directory. The following commands will do this for you:
 
 ```shell
 $ mkdir -p ~/balenaProduction
+$ cd ~/balenaProduction
+$ echo "balenaUrl: 'balena-cloud.com'" > balenarc.yml
+$ echo "dataDirectory: '.'" >> balenarc.yml
+
 $ mkdir -p ~/balenaStaging
-$ echo "balenaUrl: 'balena-staging.com'" > ~/balenaStaging/balenarc.yml
-$ echo "balenaUrl: 'balena-cloud.com'" > ~/balenaProduction/balenarc.yml
+$ cd ~/balenaStaging
+$ echo "balenaUrl: 'balena-staging.com'" > balenarc.yml
+$ echo "dataDirectory: '.'" >> balenarc.yml
 ```
 
 Note that we do *not* prefix the `balenarc.yml` file with a `.` to avoid hiding
-it.
+it. Note also that some lines above use `'>'` and others use `'>>'` as the shell
+redirection operator (the former creates a new file, and the latter appends to
+an existing file).
 
-We can now use the `BALENARC_DATA_DIRECTORY` to tell balena CLI which directory
-to store data such as the authentication token for the current environment.
-Using this and then logging into the relevant service will store an
-authentication token in the appropriate directory. Run the following in a
-terminal to login to the production environment:
+Now check that it works:
 
 ```shell
 $ cd ~/balenaProduction
-$ BALENARC_DATA_DIRECTORY=. balena login
+$ balena login
  _            _
 | |__   __ _ | |  ____  _ __    __ _
 | '_ \ / _` || | / __ \| '_ \  / _` |
@@ -226,7 +230,7 @@ the staging configuration directory:
 
 ```shell
 $ cd ~/balenaStaging
-$ BALENARC_DATA_DIRECTORY=. balena login
+$ balena login
  _            _
 | |__   __ _ | |  ____  _ __    __ _
 | '_ \ / _` || | / __ \| '_ \  / _` |
@@ -250,26 +254,46 @@ to use either environment without any further authentication:
 
 ```shell
 $ cd ~/balenaStaging
-$ BALENARC_DATA_DIRECTORY=. balena apps
+$ balena apps
 ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12345 appOne            intel-nuc    0              0
 12346 appTwo            iot2000      0              0
+
 $ cd ~/balenaProduction
-$ BALENARC_DATA_DIRECTORY=. balena apps
+$ balena apps
 ID      APP NAME         DEVICE TYPE      ONLINE DEVICES DEVICE COUNT
 54321   artik530         artik533s        0              0
 54322   bob              intel-nuc        0              0
 54323   bbbtest          beaglebone-black 0              0
 ```
 
-We'll be using the two separate environments in the next set of exercises
-to show you how devices can be moved between applications and environments.
-As such, ensure you're in the `~/balenaProduction` directory before
-proceeding:
+For the purposes of this document, we have chosen `'.'` (the current working
+directory) as the value for the `dataDirectory` property in the `balenarc.yml`
+file, but you could of course choose different directories such as, for example,
+`/home/joe/.balena/production` and `/home/joe/.balena/staging`. If this property
+is not specified, the default data directory is `.balena` or `_balena`
+(respectively on Linux/macOS and Windows) in the user's home directory.
+
+> Watch out! The tilde character (`'~'`) is not resolved to the homedir when
+> used inside a `balenarc.yml` file. Use the full directory such as `/home/joe/`
+> instead of the tilde.
+
+It is also worth noting that the CLI accepts the `BALENARC_DATA_DIRECTORY`
+environment variable as an alternative to the `dataDirectory` property in the
+`balenarc.yml` file. For example, the following command would allow the CLI to
+use the staging settings and token even if the current working directory was not
+`~/balenaStaging`:
 
 ```shell
-$ cd ~/balenaProduction
+$ cd /tmp
+$ BALENARC_BALENA_URL=balena-staging.com \
+  BALENARC_DATA_DIRECTORY=~/balenaStaging \
+  balena whoami
 ```
+
+We'll be using the two separate environments (staging and production) in the
+next set of exercises to show you how devices can be moved between applications
+and environments. Don't delete them just yet!
 
 ### 2. Moving Devices between Applications and Environments
 
@@ -292,7 +316,8 @@ Moving a device to another application in the same environment is extremely
 easy. To demonstrate this, first create a new application for the balenaFin:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena app create altApp --type fincm3
+$ cd ~/balenaProduction
+$ balena app create altApp --type fincm3
 Application created: altApp (fincm3, id 987654)
 ```
 
@@ -306,7 +331,8 @@ is provisioned against the `cliApp` application and online, execute the
 following command:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena devices
+$ cd ~/balenaProduction
+$ balena devices
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
 1234556 7654321 weathered-wildflower fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
@@ -315,7 +341,8 @@ To interactively determine which application to move a device to, simply use
 its UUID with the `balena device move` command:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena device move 7654321
+$ cd ~/balenaProduction
+$ balena device move 7654321
 ? Select an application (Use arrow keys)
 ❯ altApp (fincm3)
   anotherApp (raspberry-pi)
@@ -326,7 +353,8 @@ optional `--application` switch to the command with the relevant application
 name:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena device move 94095f8 --application altApp
+$ cd ~/balenaProduction
+$ balena device move 94095f8 --application altApp
 94095f8 was moved to altApp
 ```
 
@@ -334,7 +362,8 @@ A call of `balena device` specifying the UUID of the moved device will now
 show it is owned by the specified application:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena device 7654321
+$ cd ~/balenaProduction
+$ balena device 7654321
 == WEATHERED WILDFLOWER
 ID:                 1693707
 DEVICE TYPE:        fincm3
@@ -374,11 +403,12 @@ Once the device is provisioned and has connected to the balena network,
 discover its hostname or IP address by using `balena devices`:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena devices
+$ cd ~/balenaProduction
+$ balena devices
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1234567 7654321 little-paper     fincm3          cliApp           Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/76543217654321765432176543217654/summary
 
-$ BALENARC_DATA_DIRECTORY=. balena device 7654321
+$ balena device 7654321
 == LITTLE PAPER
 ID:                 1234567
 DEVICE TYPE:        fincm3
@@ -398,7 +428,8 @@ As we now have the local IP address for it, we can use this to call the command
 to leave the balenaCloud environment:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena leave 192.168.1.171
+$ cd ~/balenaProduction
+$ balena leave 192.168.1.171
 [Success] Device successfully left the platform.
 ```
 
@@ -410,17 +441,12 @@ example one that has been downloaded from
 We can now join a different balena environment by using balena CLI to login
 to it. As we previously did this for our staging environment, we can simply
 use the data and tokens we saved for this by changing directories and using
-the other environment information:
+the other environment information. We'll now create a new application on the
+staging environment to move the device to:
 
 ```shell
 $ cd ~/balenaStaging
-```
-
-We'll now create a new application on the staging environment to move the
-device to:
-
-```shell
-$ BALENARC_DATA_DIRECTORY=. balena app create stagingCliApp --type fincm3
+$ balena app create stagingCliApp --type fincm3
 Application created: stagingCliApp (fincm3, id 97654)
 ```
 
@@ -428,7 +454,8 @@ Finally, we'll issue a command to the now unmanaged device to join the staging
 environment and the `stagingCliApp` application:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena join 192.168.1.171 --application stagingCliApp
+$ cd ~/balenaStaging
+$ balena join 192.168.1.171 --application stagingCliApp
 ? Check for updates every X minutes 10
 [Success] Device successfully joined balena-staging.com!
 ```
@@ -437,7 +464,8 @@ We can now check the devices on the staging environment to ensure it's joined
 successfully:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena devices
+$ cd ~/balenaStaging
+$ balena devices
 ID     UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME  STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 876542 3456789 purple-snowflake fincm3       stagingCliApp     Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-staging.com/devices/3456789345678934567893456789/summary
 ```
@@ -448,7 +476,8 @@ If we hadn't specified the application to join, we would have seen an
 interactive list of all the applications on the staging environment:
 
 ```shell
-$ BALENARC_DATA_DIRECTORY=. balena join 192.168.1.171
+$ cd ~/balenaStaging
+$ balena join 192.168.1.171
 ? Select application
 ❯ heds/artik530
   heds/orangepi

@@ -819,11 +819,10 @@ ID     NAME      VALUE
 ```
 
 As you can see, both variables now show up in our list.
-However, if we now list the logs for the balenaFin, we'll see something else
-(note that currently for `logs` you need to supply the full UUID of the device):
+However, if we now list the logs for the balenaFin, we'll see something else:
 
 ```shell
-$ balena logs 1234567890abcdef
+$ balena logs 1234567
 [Logs]    [9/17/2019, 10:55:24 AM] [main] Hello world!
 [Logs]    [9/17/2019, 10:57:34 AM] Killing service 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
 [Logs]    [9/17/2019, 10:57:35 AM] Service exited 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
@@ -861,7 +860,7 @@ Wait a little while to let the Supervisor see that the environment variable
 has been deleted, and then look at the logs again:
 
 ```shell
-$ balena logs 1234567890abcdef
+$ balena logs 1234567
 [Logs]    [9/17/2019, 11:06:37 AM] Killing service 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
 [Logs]    [9/17/2019, 11:06:38 AM] Service exited 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
 [Logs]    [9/17/2019, 11:06:38 AM] Killed service 'main sha256:4e11240a66e7e86f38f0ccf9a806a079c4181d446bc026d6b62b83981781737b'
@@ -956,11 +955,10 @@ If we hadn't specified the `latest` commit, we'd have been given an interactive
 list of all of them to select from.
 
 Now provision your balenaFin using the resulting image using
-`balena os initialize` or balenaEtcher. Once booted, acquire the full UUID for
-the device (eg. `1234567890abcdef`) and then look at the logs for that device:
+`balena os initialize` or balenaEtcher. Once booted look at the logs for that device:
 
 ```shell
-$ balena logs 1234567890abcdef
+$ balena logs 1234567
 [Logs]    [9/18/2019, 1:11:42 PM] Supervisor starting
 [Logs]    [9/18/2019, 1:11:43 PM] Applying configuration change {"SUPERVISOR_POLL_INTERVAL":"900000"}
 [Logs]    [9/18/2019, 1:11:44 PM] Applied configuration change {"SUPERVISOR_POLL_INTERVAL":"900000"}

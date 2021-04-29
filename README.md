@@ -893,7 +893,7 @@ connection (for example a slow GSM connection). In these cases, installing
 a device and then attempting to download an initial application is not only
 slow but sometimes unachievable.
 
-The way round this is to preload an application into an image that is then
+The way around this is to preload an application into an image that is then
 used to provision a device. Preloading injects the images required for
 the services that comprise the application, meaning that on device startup
 the Supervisor can immediately start running those services without having

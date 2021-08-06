@@ -14,7 +14,7 @@ the following masterclasses:
 ## Introduction
 
 The balena Command Line Interface (balena CLI) utility consists of a number
-of commands that allow a user to develop, deploy and manage balena applications
+of commands that allow a user to develop, deploy and manage balena applications, Fleets, 
 and devices.
 
 The previous balena CLI masterclass covered some of the most common techniques
@@ -82,7 +82,7 @@ $ balena version
 ### 1. Communicating with Alternative balena Environments
 
 By default, the balena CLI communicates with the production balenaCloud instance,
-using this environment to carry out operations such as application creation,
+using this environment to carry out operations such as Fleet creation,
 code pushing, etc.
 
 However, there are alternative environments available, such as balena's staging
@@ -292,17 +292,17 @@ $ BALENARC_BALENA_URL=balena-staging.com \
 ```
 
 We'll be using the two separate environments (staging and production) in the
-next set of exercises to show you how devices can be moved between applications
+next set of exercises to show you how devices can be moved between Fleets
 and environments. Don't delete them just yet!
 
-### 2. Moving Devices between Applications and Environments
+### 2. Moving Devices between Fleets and Environments
 
 Usually you'll provision a device that will exist on a particular balena
-application or environment, as the lifecycle of that device will only make
-sense within that application.
+Fleet or environment, as the lifecycle of that device will only make
+sense within that Fleet.
 
 However, there are times where it is useful to be able to move a device either
-from one application to another (for example when a major rewrite of your
+from one Fleet to another (for example when a major rewrite of your
 application occurs that is no longer backwards compatible with a prior version)
 or from one environment to another (perhaps you've created a locally hosted
 test environment using openBalena and now want to move from your test
@@ -310,56 +310,56 @@ environment to the production environment of balenaCloud).
 
 The following exercises will show you how to carry this out.
 
-#### 2.1 Moving Devices between Applications
+#### 2.1 Moving Devices between Fleets
 
-Moving a device to another application in the same environment is extremely
-easy. To demonstrate this, first create a new application for the balenaFin:
+Moving a device to another Fleet in the same environment is extremely
+easy. To demonstrate this, first create a new Fleet for the balenaFin:
 
 ```shell
 $ cd ~/balenaProduction
-$ balena app create altApp --type fincm3
-Application created: altApp (fincm3, id 987654)
+$ balena app create altFleet --type fincm3
+Application created: altFleet (fincm3, id 987654)
 ```
 
-We should already have a device connecting to our previous 'cliApp' (from the
+We should already have a device connecting to our previous 'cliFleet' (from the
 previous
 [balena CLI Masterclass](https://github.com/balena-io/balena-cli-masterclass)). See the
 [Creating an Application and Provisioning a Device](https://github.com/balena-io/balena-cli-masterclass#2-creating-an-application-and-provisioning-a-device)
 section to create an application and provision a device against it, if you
 haven't already done so, and wish to follow this exercise. Once a device
-is provisioned against the `cliApp` application and online, execute the
+is provisioned against the `cliFleet` application and online, execute the
 following command:
 
 ```shell
 $ cd ~/balenaProduction
 $ balena devices
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
-1234556 7654321 weathered-wildflower fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
+1234556 7654321 weathered-wildflower fincm3          cliFleet           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
 
-To interactively determine which application to move a device to, simply use
+To interactively determine which Fleet to move a device to, simply use
 its UUID with the `balena device move` command:
 
 ```shell
 $ cd ~/balenaProduction
 $ balena device move 7654321
 ? Select an application (Use arrow keys)
-❯ altApp (fincm3)
-  anotherApp (raspberry-pi)
+❯ altFleet (fincm3)
+  anotherFleet (raspberry-pi)
 ```
 
-As you can see, only applications that support the device type of the device that is being moved are available. For non-interactive movement, simply pass the
-optional `--application` switch to the command with the relevant application
+As you can see, only Fleets that support the device type of the device that is being moved are available. For non-interactive movement, simply pass the
+optional `--application` switch to the command with the relevant Fleet
 name:
 
 ```shell
 $ cd ~/balenaProduction
-$ balena device move 94095f8 --application altApp
-94095f8 was moved to altApp
+$ balena device move 94095f8 --application altFleet
+94095f8 was moved to altFleet
 ```
 
 A call of `balena device` specifying the UUID of the moved device will now
-show it is owned by the specified application:
+show it is owned by the specified Fleet:
 
 ```shell
 $ cd ~/balenaProduction
@@ -381,7 +381,7 @@ DASHBOARD URL:      https://dashboard.balena-cloud.com/devices/76543217654321765
 
 The Supervisor on the device will remove any previously running services, as
 well as their images and any volumes associated with them and download the
-images associated with the new application before starting them.
+images associated with the new Fleet before starting them.
 
 #### 2.2 Moving Devices between Environments
 
@@ -396,7 +396,7 @@ For a device running a development image, you can use `balena leave` and
 
 First, provision a device using a development image. You can do this using
 the balenaCloud dashboard and downloading a 'Development' edition image from
-the `cliApp` application page. Provision your balenaFin with this image
+the `cliFleet` Fleet page. Provision your balenaFin with this image
 using either [balenaEtcher](https://www.balena.io/etcher/) or [balena CLI](#imagewriting).
 
 Once the device is provisioned and has connected to the balena network,
@@ -406,7 +406,7 @@ discover its hostname or IP address by using `balena devices`:
 $ cd ~/balenaProduction
 $ balena devices
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
-1234567 7654321 little-paper     fincm3          cliApp           Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/76543217654321765432176543217654/summary
+1234567 7654321 little-paper     fincm3          cliFleet           Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/76543217654321765432176543217654/summary
 
 $ balena device 7654321
 == LITTLE PAPER
@@ -415,7 +415,7 @@ DEVICE TYPE:        fincm3
 STATUS:             idle
 IS ONLINE:          true
 IP ADDRESS:         192.168.1.171
-APPLICATION NAME:   cliApp
+APPLICATION NAME:   cliFleet
 UUID:               76543217654321765432176543217654
 COMMIT:             7efbc95825641b6482742a54c8e74010
 SUPERVISOR VERSION: 9.15.7
@@ -441,21 +441,21 @@ example one that has been downloaded from
 We can now join a different balena environment by using balena CLI to login
 to it. As we previously did this for our staging environment, we can simply
 use the data and tokens we saved for this by changing directories and using
-the other environment information. We'll now create a new application on the
+the other environment information. We'll now create a new Fleet on the
 staging environment to move the device to:
 
 ```shell
 $ cd ~/balenaStaging
-$ balena app create stagingCliApp --type fincm3
-Application created: stagingCliApp (fincm3, id 97654)
+$ balena app create stagingCliFleet --type fincm3
+Application created: stagingCliFleet (fincm3, id 97654)
 ```
 
 Finally, we'll issue a command to the now unmanaged device to join the staging
-environment and the `stagingCliApp` application:
+environment and the `stagingCliFleet` Fleet:
 
 ```shell
 $ cd ~/balenaStaging
-$ balena join 192.168.1.171 --application stagingCliApp
+$ balena join 192.168.1.171 --application stagingCliFleet
 ? Check for updates every X minutes 10
 [Success] Device successfully joined balena-staging.com!
 ```
@@ -467,13 +467,13 @@ successfully:
 $ cd ~/balenaStaging
 $ balena devices
 ID     UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME  STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
-876542 3456789 purple-snowflake fincm3       stagingCliApp     Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-staging.com/devices/3456789345678934567893456789/summary
+876542 3456789 purple-snowflake fincm3       stagingCliFleet     Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-staging.com/devices/3456789345678934567893456789/summary
 ```
 
 As can be seen, it's been given a new name and UUID.
 
-If we hadn't specified the application to join, we would have seen an
-interactive list of all the applications on the staging environment:
+If we hadn't specified the Fleet to join, we would have seen an
+interactive list of all the Fleets on the staging environment:
 
 ```shell
 $ cd ~/balenaStaging
@@ -481,14 +481,14 @@ $ balena join 192.168.1.171
 ? Select application
 ❯ heds/artik530
   heds/orangepi
-  heds/stagingcliapp
+  heds/stagingclifleet
   heds/switchapp
   heds/vpn-changed
 ```
 
-Note that the applications listed are not all of the `fincm3` device type, but
+Note that the Fleets listed are not all of the `fincm3` device type, but
 share a common architecture, so this could be `aarch64`, `armv7hf` or `armv6`
-for the Fin. You should be very careful when selecting an application of a
+for the Fin. You should be very careful when selecting a Fleet of a
 different device type, as you may find issues when the device attempts to run
 the application code for a device without the same peripherals or system-on-chip
 layout.
@@ -575,11 +575,11 @@ the latest version of balenaOS for the device type would have been downloaded.
 
 A downloaded balenaOS image via balena CLI is unconfigured, so to allow a device
 to use it as a provisioning image we need to specify, at a minimum, which
-application the device should be associated with.
+Fleet the device should be associated with.
 
 There are a few ways to achieve this. The simplest is to configure it
-interactively, passing either an application name or device UUID so that
-the relevant application can be determined:
+interactively, passing either a Fleet name or device UUID so that
+the relevant Fleet can be determined:
 
 ```shell
 $ balena os configure balena-fin-image.img --app cliApp
@@ -600,12 +600,12 @@ a device with, which is to produce a configuration and then injecting that
 configuration into a bare OS image.
 
 This allows multiple configs to be generated, for example for different
-applications, and then using copies of a bare OS image of a particular version
+Fleets, and then using copies of a bare OS image of a particular version
 to prepare images for each of those apps.
 
 You can generate independent configuration files using the
 `balena config generate` command. A mandatory OS version must be passed to this
-command, with either an application name or device UUID. It will interactively
+command, with either an Fleet name or device UUID. It will interactively
 ask for more details:
 
 ```shell
@@ -623,7 +623,7 @@ following command, ensure you replace the values for `--wifiKey` and
 `--wifiSsid` with values for your local network's Access Point:
 
 ```shell
-$ balena config generate --version 2.38.0+rev1 --application cliApp --appUpdatePollInterval 10 --network wifi --wifiSsid MyNetworkSSID --wifiKey myw1f1n3tw0rk -o wifi-config.json
+$ balena config generate --version 2.38.0+rev1 --application cliFleet --appUpdatePollInterval 10 --network wifi --wifiSsid MyNetworkSSID --wifiKey myw1f1n3tw0rk -o wifi-config.json
 ```
 
 This will generate a new JSON file in the current directory. We'll now use this
@@ -631,7 +631,7 @@ to write to the downloaded image. Ensure you have an unconfigured image, such
 as the one we downloaded previously:
 
 ```shell
-$ balena os configure --application cliApp --config wifi-config.json balena-fin-image.img
+$ balena os configure --application cliFleet --config wifi-config.json balena-fin-image.img
 Configuring operating system image
 ```
 
@@ -698,7 +698,7 @@ will connect to balenaCloud:
 ```shell
 $ balena devices
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
-1234556 7654321 restless-glade       fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
+1234556 7654321 restless-glade       fincm3          cliFleet           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
 
 ### 4. Configuring Environment Variables
@@ -711,12 +711,12 @@ is not behaving as expected. We may want to enable extra debugging by setting
 an environment variable dynamically that will get picked up by the device
 and start verbose logging.
 
-We'll start by pushing code to our balenaFin, reusing our previous `cliApp`
-application but using the code from this masterclass:
+We'll start by pushing code to our balenaFin, reusing our previous `cliFleet`
+Fleet but using the code from this masterclass:
 
 ```shell
-$ balena push cliApp
-[Info]     Starting build for cliApp, user heds
+$ balena push cliFleet
+[Info]     Starting build for cliFleet, user heds
 [Info]     Dashboard link: https://dashboard.balena-cloud.com/apps/1234567/devices
 [Info]     Building on arm01
 [Info]     Pulling previous images for caching purposes...
@@ -803,16 +803,16 @@ As you can see, it looks like if we set the `LOG_DEBUG` environment variable,
 we'll get some debug logging. So let's use `balena env` to do this:
 
 ```shell
-$ balena env add LOG_DEBUG true --application cliApp
+$ balena env add LOG_DEBUG true --application cliFleet
 ```
 
-Now go to the dashboard for the `cliApp` application, and select 'Environment
+Now go to the dashboard for the `cliFleet` Fleet, and select 'Environment
 Variables'. 'Add' a new variable, called `DASH_VAR` and set it to `from-dash`.
 To verify we've now set our variables, let's use `balena envs` which will show
-all the environment variables set for our application:
+all the environment variables set for our Fleet:
 
 ```shell
-$ balena envs --application cliApp
+$ balena envs --application cliFleet
 ID     NAME      VALUE
 123456 DASH_VAR  from-dash
 654321 LOG_DEBUG true
@@ -849,7 +849,7 @@ ID of the variable we want to remove:
 
 ```shell
 $ balena env rm 654321 --yes
-$ balena envs --application cliApp
+$ balena envs --application cliFleet
 ID     NAME      VALUE
 123456 DASH_VAR  from-dash
 ```
@@ -879,7 +879,7 @@ $ balena logs 1234567
 We're back to no debug logs again!
 
 The balena CLI also allows you to rename environment variables, as well as set
-and remove them for specific devices instead of an entire application fleet.
+and remove them for specific devices instead of an entire Fleet.
 For device-based variables, most commands take an extra switch, `--device`
 which allows you to specify the UUID of the device you wish to make the
 variable change for.
@@ -905,7 +905,7 @@ users who also want to ensure that they know about the devices that they're
 shipping it's only half the story.
 
 Preregistering a device allows the creation of individually registered devices
-to an application before those devices are ever physically powered on or
+to a Fleet before those devices are ever physically powered on or
 connected to a network. This is extremely useful in situations such as
 manufacturing where a device may require tracking, as a specific device UUID can
 then be associated with a specific customer order, for example. This ensures
@@ -928,23 +928,23 @@ you want to preload (for example, if your image has a path of
 `/Work/images` to Docker Desktop's File Sharing resources).
 
 **Important Note:** Currently, Docker for Windows and Docker for Mac only
-	ship with the 'overlay2' storage driver. This means that any application
+	ship with the 'overlay2' storage driver. This means that any Fleet
 	image that does not use 'overlay2' as the storage driver (including those
 	for the balena Fin), can not be preloaded under these host platforms.
 
-We'll take the current `cliApp` application and preload it into the same
+We'll take the current `cliFleet` Fleet and preload it into the same
 `balena-fin-image.img` image we earlier configured and provisioned our device
 with. The `balena preload` command has a large number of switch options for
 catering with different situations, including the ability to use a particular
 release. However, for this exercise, we'll simply use the latest version of
-the code we previously pushed to `cliApp`. In a terminal, execute the following:
+the code we previously pushed to `cliFleet`. In a terminal, execute the following:
 
 ```shell
-$ balena preload balena-fin-image.img --app cliApp --commit latest
+$ balena preload balena-fin-image.img --app cliFleet --commit latest
 Building Docker preloader image. [========================] 100%
 / Creating preloader container
 \ Starting preloader container
-- Fetching application cliApp
+- Fetching application cliFleet
 | Reading image information
 / Resizing partitions and waiting for dockerd to start
 Pulling 1 image [========================] 100%
@@ -994,10 +994,10 @@ modify the `config.json` in our `balena-fin-image.img` before writing this
 image to the balenaFin.
 
 We'll verify that we're registering a device by first listing the devices
-currently associated with the `cliApp` application:
+currently associated with the `cliFleet` Fleet:
 
 ```shell
-$ balena devices --application cliApp
+$ balena devices --application cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
@@ -1016,8 +1016,8 @@ device that (hopefully) doesn't yet exist. In your terminal, execute the
 following:
 
 ```shell
-$ balena device register cliApp --uuid 6053dab8dc4721ed288c8dfc79e52967
-Registering to cliApp: 6053dab8dc4721ed288c8dfc79e52967
+$ balena device register cliFleet --uuid 6053dab8dc4721ed288c8dfc79e52967
+Registering to cliFleet: 6053dab8dc4721ed288c8dfc79e52967
 ```
 
 Note that if we had not used the `--uuid` switch, then a random UUID would have
@@ -1030,14 +1030,14 @@ and register a UUID that already exists, it would be rejected. We can try this
 now:
 
 ```shell
-$ balena device register cliApp --uuid 6053dab8dc4721ed288c8dfc79e52967
+$ balena device register cliFleet --uuid 6053dab8dc4721ed288c8dfc79e52967
 BalenaRequestError: Request error: "uuid" must be unique.
 ```
 
-Now we'll look at the device list for the application again:
+Now we'll look at the device list for the Fleet again:
 
 ```shell
-$ balena devices --application cliApp
+$ balena devices --application cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 6053dab 93b40bc late-sunset raspberrypi4-64 pi4test                 false                                             https://dashboard.balena-cloud.com/devices/6053dab8dc4721ed288c8dfc79e52967/summary
@@ -1054,7 +1054,7 @@ We'll use the command to generate a configuration as mentioned in a previous
 exercise:
 
 ```shell
-$ balena config generate --app cliApp --version 2.38.0+rev1 --device 6053dab8dc4721ed288c8dfc79e52967 --network ethernet --appUpdatePollInterval 10 --output config.json
+$ balena config generate --app cliFleet --version 2.38.0+rev1 --device 6053dab8dc4721ed288c8dfc79e52967 --network ethernet --appUpdatePollInterval 10 --output config.json
 ```
 
 Note the extra switch option, `--device`, which allows us to pass our
@@ -1076,10 +1076,10 @@ After it's been provisioned, power up the balenaFin. You'll soon see our
 preregistered device come online:
 
 ```shell
-$ balena devices --application cliApp
+$ balena devices --application cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
-1699866 93b40bc late-sunset      fincm3          cliApp           Idle   true      10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/93b40bc440cfccc6d45fa8db4a777a06/summary
+1699866 93b40bc late-sunset      fincm3          cliFleet           Idle   true      10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/93b40bc440cfccc6d45fa8db4a777a06/summary
 ```
 
 As before, the application will also start immediately as it was preloaded.
@@ -1103,7 +1103,7 @@ Once the device is online and connected to the balenaCloud infrastructure,
 verify this with:
 
 ```shell
-$ balena devices --application cliApp
+$ balena devices --application cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false      9.14.0             balenaOS 2.36.0+rev2 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
@@ -1128,7 +1128,7 @@ choose the version we wanted to update the device with. Additionally, the
 Finally, let's run `balena devices` again to see the new version of the device:
 
 ```shell
-$ balena devices --application cliApp
+$ balena devices --application cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
@@ -1140,9 +1140,9 @@ functionality that balena CLI offers. You should now be familiar and confident
 enough with balena CLI to:
 
 * Switch between balena environments, as well as move devices between them
-    as well as different applications
+    as well as different Fleets
 * Download, configure and provision device images using balena CLI
-* Modify environment and configuration variables, both application and device
+* Modify environment and configuration variables, both Fleet and device
     based
 * Preregister a device with a balena environment, as well as preload a device
     provisioning image with a required version of an application for

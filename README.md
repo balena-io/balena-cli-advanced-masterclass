@@ -1142,7 +1142,7 @@ enough with balena CLI to:
 * Switch between balena environments, as well as move devices between them
     as well as different fleets
 * Download, configure and provision device images using balena CLI
-* Modify environment and configuration variables, both Fleet and device
+* Modify environment and configuration variables, both fleet and device
     based
 * Preregister a device with a balena environment, as well as preload a device
     provisioning image with a required version of an application for

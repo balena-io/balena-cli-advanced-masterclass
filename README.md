@@ -800,7 +800,7 @@ $ balena logs 1234567
 ```
 
 As you can see, it looks like if we set the `LOG_DEBUG` environment variable,
-we'll get some debug logging. So let's use `balena env` to do this:
+we'll get some debug logging (If you don't see this message ensure you are pushing the code from this masterclass, and not `balena-cli-masterclass`!). So let's use `balena env` to do this:
 
 ```shell
 $ balena env add LOG_DEBUG true --application cliFleet

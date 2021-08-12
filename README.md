@@ -302,7 +302,7 @@ fleet or environment, as the lifecycle of that device, will only make
 sense within that fleet.
 
 However, there are times where it is useful to be able to move a device either
-from one Fleet to another (for example when a major rewrite of your
+from one fleet to another (for example when a major rewrite of your
 application occurs that is no longer backwards compatible with a prior version)
 or from one environment to another (perhaps you've created a locally hosted
 test environment using openBalena and now want to move from your test

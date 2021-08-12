@@ -298,7 +298,7 @@ and environments. Don't delete them just yet!
 ### 2. Moving Devices between Fleets and Environments
 
 Usually you'll provision a device that will exist on a particular balena
-Fleet or environment, as the lifecycle of that device will only make
+fleet or environment, as the lifecycle of that device, will only make
 sense within that Fleet.
 
 However, there are times where it is useful to be able to move a device either

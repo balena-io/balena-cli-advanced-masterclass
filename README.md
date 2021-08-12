@@ -14,7 +14,7 @@ the following masterclasses:
 ## Introduction
 
 The balena Command Line Interface (balena CLI) utility consists of a number
-of commands that allow a user to develop, deploy and manage balena applications, Fleets, 
+of commands that allow a user to develop, deploy and manage balena fleets, 
 and devices.
 
 The previous balena CLI masterclass covered some of the most common techniques

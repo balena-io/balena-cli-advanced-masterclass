@@ -82,7 +82,7 @@ $ balena version
 ### 1. Communicating with Alternative balena Environments
 
 By default, the balena CLI communicates with the production balenaCloud instance,
-using this environment to carry out operations such as Fleet creation,
+using this environment to carry out operations such as fleet creation,
 code pushing, etc.
 
 However, there are alternative environments available, such as balena's staging

@@ -312,8 +312,8 @@ The following exercises will show you how to carry this out.
 
 #### 2.1 Moving Devices between Fleets
 
-Moving a device to another Fleet in the same environment is extremely
-easy. To demonstrate this, first create a new Fleet for the balenaFin:
+Moving a device to another fleet in the same environment is extremely
+easy. To demonstrate this, first create a new fleet for the balenaFin:
 
 ```shell
 $ cd ~/balenaProduction

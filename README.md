@@ -292,7 +292,7 @@ $ BALENARC_BALENA_URL=balena-staging.com \
 ```
 
 We'll be using the two separate environments (staging and production) in the
-next set of exercises to show you how devices can be moved between Fleets
+next set of exercises to show you how devices can be moved between fleets
 and environments. Don't delete them just yet!
 
 ### 2. Moving Devices between Fleets and Environments

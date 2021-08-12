@@ -1104,7 +1104,7 @@ verify this with:
 
 ```shell
 $ balena devices --application cliFleet
-ID      UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
+ID      UUID    DEVICE NAME      DEVICE TYPE  FLEET NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false      9.14.0             balenaOS 2.36.0+rev2 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
 

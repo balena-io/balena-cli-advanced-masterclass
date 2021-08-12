@@ -317,7 +317,7 @@ easy. To demonstrate this, first create a new fleet for the balenaFin:
 
 ```shell
 $ cd ~/balenaProduction
-$ balena app create altFleet --type fincm3
+$ balena fleet create altFleet --type fincm3
 Application created: altFleet (fincm3, id 987654)
 ```
 

@@ -1129,7 +1129,7 @@ Finally, let's run `balena devices` again to see the new version of the device:
 
 ```shell
 $ balena devices --fleet cliFleet
-ID      UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
+ID      UUID    DEVICE NAME      DEVICE TYPE  FLEET NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
 

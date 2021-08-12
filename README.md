@@ -1140,7 +1140,7 @@ functionality that balena CLI offers. You should now be familiar and confident
 enough with balena CLI to:
 
 * Switch between balena environments, as well as move devices between them
-    as well as different Fleets
+    as well as different fleets
 * Download, configure and provision device images using balena CLI
 * Modify environment and configuration variables, both Fleet and device
     based

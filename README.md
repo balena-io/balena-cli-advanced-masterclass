@@ -334,7 +334,7 @@ following command:
 $ cd ~/balenaProduction
 $ balena devices
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
-1234556 7654321 weathered-wildflower fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
+1234556 7654321 weathered-wildflower fincm3          cliApp           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/1234567890abcdef/summary
 ```
 
 To interactively determine which application to move a device to, simply use

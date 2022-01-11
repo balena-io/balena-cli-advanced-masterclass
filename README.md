@@ -981,7 +981,7 @@ immediately started the preloaded application.
 
 `balena preload` has a wealth of switches, and can modify the device
 significantly. It's well worth familiarizing yourself with the options
-[here](https://github.com/balena-io/balena-cli/blob/master/doc/balena-cli.md#preload).
+[here](https://github.com/balena-io/balena-cli/blob/master/docs/balena-cli.md#preload).
 
 #### 5.2 Preregistering a Device
 

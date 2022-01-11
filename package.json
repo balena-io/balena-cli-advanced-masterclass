@@ -1,6 +1,6 @@
 {
   "name": "balena-cli-advanced-masterclass",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "balenaCLI advanced masterclass application",
   "main": "src/helloworld.js",
   "scripts": {
@@ -19,6 +19,6 @@
   "homepage": "https://github.com/balena-io/balena-cli-advanced-masterclass#readme",
   "private": true,
   "versionist": {
-    "publishedAt": "2021-11-15T21:08:58.717Z"
+    "publishedAt": "2022-01-11T11:41:01.248Z"
   }
 }

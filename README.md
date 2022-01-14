@@ -124,7 +124,9 @@ Once logged in, successive uses of
 use the alternative environment, for example:
 
 ```shell
+FIXME:
 $ BALENARC_BALENA_URL=balena-staging.com balena apps
+FIXME:
 ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12345 appOne            intel-nuc    0              0
 12346 appTwo            iot2000      0              0
@@ -144,10 +146,13 @@ it with the following information:
 balenaUrl: 'balena-staging.com'
 ```
 
+FIXME:
 Now try listing the apps from the staging environment again:
 
 ```shell
+FIXME:
 $ balena apps
+FIXME:
 ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12345 appOne            intel-nuc    0              0
 12346 appTwo            iot2000      0              0
@@ -254,13 +259,17 @@ to use either environment without any further authentication:
 
 ```shell
 $ cd ~/balenaStaging
+FIXME:
 $ balena apps
+FIXME:
 ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12345 appOne            intel-nuc    0              0
 12346 appTwo            iot2000      0              0
 
 $ cd ~/balenaProduction
+FIXME:
 $ balena apps
+FIXME:
 ID      APP NAME         DEVICE TYPE      ONLINE DEVICES DEVICE COUNT
 54321   artik530         artik533s        0              0
 54322   bob              intel-nuc        0              0
@@ -318,21 +327,25 @@ easy. To demonstrate this, first create a new fleet for the balenaFin:
 ```shell
 $ cd ~/balenaProduction
 $ balena fleet create altFleet --type fincm3
-Application created: altFleet (fincm3, id 987654)
+Fleet created: slug "admin/altFleet", device type "fincm3"
 ```
 
 We should already have a device connecting to our previous 'cliFleet' (from the
 previous
 [balena CLI Masterclass](https://github.com/balena-io/balena-cli-masterclass)). See the
+FIXME:
 [Creating an Application and Provisioning a Device](https://github.com/balena-io/balena-cli-masterclass#2-creating-an-application-and-provisioning-a-device)
+FIXME:
 section to create an application and provision a device against it, if you
 haven't already done so, and wish to follow this exercise. Once a device
+FIXME:
 is provisioned against the `cliFleet` application and online, execute the
 following command:
 
 ```shell
 $ cd ~/balenaProduction
 $ balena devices
+FIXME:
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
 1234556 7654321 weathered-wildflower fincm3          cliFleet           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
@@ -343,17 +356,20 @@ its UUID with the `balena device move` command:
 ```shell
 $ cd ~/balenaProduction
 $ balena device move 7654321
+FIXME:
 ? Select an application (Use arrow keys)
 ❯ altFleet (fincm3)
   anotherFleet (raspberry-pi)
 ```
 
 As you can see, only Fleets that support the device type of the device that is being moved are available. For non-interactive movement, simply pass the
+FIXME:
 optional `--application` switch to the command with the relevant Fleet
 name:
 
 ```shell
 $ cd ~/balenaProduction
+FIXME:
 $ balena device move 94095f8 --application altFleet
 94095f8 was moved to altFleet
 ```
@@ -370,6 +386,7 @@ DEVICE TYPE:        fincm3
 STATUS:             idle
 IS ONLINE:          true
 IP ADDRESS:         192.168.1.171 192.168.1.169
+FIXME:
 APPLICATION NAME:   altApp
 UUID:               76543217654321765432176543217654
 COMMIT:             7efbc95825641b6482742a54c8e74010
@@ -405,6 +422,7 @@ discover its hostname or IP address by using `balena devices`:
 ```shell
 $ cd ~/balenaProduction
 $ balena devices
+FIXME:
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1234567 7654321 little-paper     fincm3          cliFleet           Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.com/devices/76543217654321765432176543217654/summary
 
@@ -415,7 +433,7 @@ DEVICE TYPE:        fincm3
 STATUS:             idle
 IS ONLINE:          true
 IP ADDRESS:         192.168.1.171
-APPLICATION NAME:   cliFleet
+FIXME: APPLICATION NAME:   cliFleet
 UUID:               76543217654321765432176543217654
 COMMIT:             7efbc95825641b6482742a54c8e74010
 SUPERVISOR VERSION: 9.15.7
@@ -446,8 +464,8 @@ staging environment to move the device to:
 
 ```shell
 $ cd ~/balenaStaging
-$ balena app create stagingCliFleet --type fincm3
-Application created: stagingCliFleet (fincm3, id 97654)
+$ balena fleet create stagingCliFleet --type fincm3
+Fleet created: slug "admin/stagingCliFleet ", device type "fincm3"
 ```
 
 Finally, we'll issue a command to the now unmanaged device to join the staging
@@ -455,7 +473,7 @@ environment and the `stagingCliFleet` Fleet:
 
 ```shell
 $ cd ~/balenaStaging
-$ balena join 192.168.1.171 --application stagingCliFleet
+$ balena join 192.168.1.171 --fleet stagingCliFleet
 ? Check for updates every X minutes 10
 [Success] Device successfully joined balena-staging.com!
 ```
@@ -466,6 +484,7 @@ successfully:
 ```shell
 $ cd ~/balenaStaging
 $ balena devices
+FIXME: "APPLICATION NAME"
 ID     UUID    DEVICE NAME      DEVICE TYPE  APPLICATION NAME  STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 876542 3456789 purple-snowflake fincm3       stagingCliFleet     Idle   true      9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-staging.com/devices/3456789345678934567893456789/summary
 ```
@@ -478,6 +497,7 @@ interactive list of all the Fleets on the staging environment:
 ```shell
 $ cd ~/balenaStaging
 $ balena join 192.168.1.171
+FIXME:
 ? Select application
 ❯ heds/artik530
   heds/orangepi
@@ -502,6 +522,7 @@ layout.
 
 	`os-config join` appears to accept a config.json, but using one from
     a downloaded provisioning image does not work, eg:
+FIXME:
     root@12dc2e5:~# os-config join {"applicationName":"switchapp","applicationId":"96231","deviceType":"fincm3","userId":"299","username":"heds","appUpdatePollInterval":"600000","listenPort":"48484","vpnPort":"443","apiEndpoint":"https://api.balena-staging.com","vpnEndpoint":"vpn.balena-staging.com","registryEndpoint":"registry2.balena-staging.com","deltaEndpoint":"https://delta.balena-staging.com","pubnubSubscribeKey":"","pubnubPublishKey":"","mixpanelToken":"cb974f32bab01ecc1171937026774b18","apiKey":"Dfk7XWZFZRi52TVoAtmFwLAQP9cqDJSP"}
     error: Found argument 'applicationId:96231' which wasn't expected, or isn't valid in this context
 
@@ -582,6 +603,7 @@ interactively, passing either a Fleet name or device UUID so that
 the relevant Fleet can be determined:
 
 ```shell
+FIXME:
 $ balena os configure balena-fin-image.img --app cliApp
 Configuring operating system image
 ? Network Connection (Use arrow keys)
@@ -609,6 +631,7 @@ command, with either an Fleet name or device UUID. It will interactively
 ask for more details:
 
 ```shell
+FIXME:
 $ balena config generate --version 2.38.0+rev1 --application cliApp
 ? Network Connection (Use arrow keys)
 ❯ ethernet
@@ -623,6 +646,7 @@ following command, ensure you replace the values for `--wifiKey` and
 `--wifiSsid` with values for your local network's Access Point:
 
 ```shell
+FIXME:
 $ balena config generate --version 2.38.0+rev1 --application cliFleet --appUpdatePollInterval 10 --network wifi --wifiSsid MyNetworkSSID --wifiKey myw1f1n3tw0rk -o wifi-config.json
 ```
 
@@ -631,6 +655,7 @@ to write to the downloaded image. Ensure you have an unconfigured image, such
 as the one we downloaded previously:
 
 ```shell
+FIXME:
 $ balena os configure --application cliFleet --config wifi-config.json balena-fin-image.img
 Configuring operating system image
 ```
@@ -697,6 +722,7 @@ will connect to balenaCloud:
 
 ```shell
 $ balena devices
+FIXME:
 ID      UUID    DEVICE NAME          DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE
 1234556 7654321 restless-glade       fincm3          cliFleet           Idle   false     9.15.7             balenaOS 2.38.0+rev1 https://dashboard.balena-cloud.io/devices/1234567890abcdef/summary
 ```
@@ -717,6 +743,7 @@ Fleet but using the code from this masterclass:
 ```shell
 $ balena push cliFleet
 [Info]     Starting build for cliFleet, user heds
+FIXME:
 [Info]     Dashboard link: https://dashboard.balena-cloud.com/apps/1234567/devices
 [Info]     Building on arm01
 [Info]     Pulling previous images for caching purposes...
@@ -803,6 +830,7 @@ As you can see, it looks like if we set the `LOG_DEBUG` environment variable,
 we'll get some debug logging (If you don't see this message ensure you are pushing the code from this masterclass, and not `balena-cli-masterclass`!). So let's use `balena env` to do this:
 
 ```shell
+FIXME:
 $ balena env add LOG_DEBUG true --application cliFleet
 ```
 
@@ -812,6 +840,7 @@ To verify we've now set our variables, let's use `balena envs` which will show
 all the environment variables set for our Fleet:
 
 ```shell
+FIXME:
 $ balena envs --application cliFleet
 ID     NAME      VALUE
 123456 DASH_VAR  from-dash
@@ -849,6 +878,7 @@ ID of the variable we want to remove:
 
 ```shell
 $ balena env rm 654321 --yes
+FIXME:
 $ balena envs --application cliFleet
 ID     NAME      VALUE
 123456 DASH_VAR  from-dash
@@ -940,10 +970,12 @@ release. However, for this exercise, we'll simply use the latest version of
 the code we previously pushed to `cliFleet`. In a terminal, execute the following:
 
 ```shell
+FIXME:
 $ balena preload balena-fin-image.img --app cliFleet --commit latest
 Building Docker preloader image. [========================] 100%
 / Creating preloader container
 \ Starting preloader container
+FIXME:
 - Fetching application cliFleet
 | Reading image information
 / Resizing partitions and waiting for dockerd to start
@@ -997,7 +1029,9 @@ We'll verify that we're registering a device by first listing the devices
 currently associated with the `cliFleet` Fleet:
 
 ```shell
+FIXME:
 $ balena devices --application cliFleet
+FIXME:
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 ```
@@ -1037,7 +1071,9 @@ BalenaRequestError: Request error: "uuid" must be unique.
 Now we'll look at the device list for the Fleet again:
 
 ```shell
+FIXME:
 $ balena devices --application cliFleet
+FIXME:
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 6053dab 93b40bc late-sunset raspberrypi4-64 pi4test                 false                                             https://dashboard.balena-cloud.com/devices/6053dab8dc4721ed288c8dfc79e52967/summary
@@ -1054,6 +1090,7 @@ We'll use the command to generate a configuration as mentioned in a previous
 exercise:
 
 ```shell
+FIXME:
 $ balena config generate --app cliFleet --version 2.38.0+rev1 --device 6053dab8dc4721ed288c8dfc79e52967 --network ethernet --appUpdatePollInterval 10 --output config.json
 ```
 
@@ -1076,7 +1113,9 @@ After it's been provisioned, power up the balenaFin. You'll soon see our
 preregistered device come online:
 
 ```shell
+FIXME:
 $ balena devices --application cliFleet
+FIXME:
 ID      UUID    DEVICE NAME      DEVICE TYPE     APPLICATION NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false     10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary
 1699866 93b40bc late-sunset      fincm3          cliFleet           Idle   true      10.2.2             balenaOS 2.41.0+rev4 https://dashboard.balena-cloud.com/devices/93b40bc440cfccc6d45fa8db4a777a06/summary
@@ -1103,6 +1142,7 @@ Once the device is online and connected to the balenaCloud infrastructure,
 verify this with:
 
 ```shell
+FIXME:
 $ balena devices --application cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE  FLEET NAME STATUS IS ONLINE SUPERVISOR VERSION OS VERSION           DASHBOARD URL
 1696632 f1dd777 empty-sun        fincm3          cliTest          Idle   false      9.14.0             balenaOS 2.36.0+rev2 https://dashboard.balena-cloud.com/devices/12345678901234567890123456789012/summary

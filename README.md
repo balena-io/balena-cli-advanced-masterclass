@@ -147,7 +147,7 @@ balenaUrl: 'balena-staging.com'
 Now try listing the apps from the staging environment again:
 
 ```shell
-$ balena apps
+$ balena fleets
 ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12345 appOne            intel-nuc    0              0
 12346 appTwo            iot2000      0              0
@@ -260,7 +260,7 @@ ID    APP NAME          DEVICE TYPE  ONLINE DEVICES DEVICE COUNT
 12346 appTwo            iot2000      0              0
 
 $ cd ~/balenaProduction
-$ balena apps
+$ balena fleets
 ID      APP NAME         DEVICE TYPE      ONLINE DEVICES DEVICE COUNT
 54321   artik530         artik533s        0              0
 54322   bob              intel-nuc        0              0

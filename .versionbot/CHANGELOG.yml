@@ -1,0 +1,565 @@
+- commits:
+    - subject: Reworked this guide and verified the steps and output from each step
+        and brought over to flowzone
+      hash: 2a38a79c755ef3e4c6c2038a8a5ea4fb973367f0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Ryan Hampton (@rhampt) rhampt@balena.io
+        signed-off-by: Ryan Hampton (@rhampt) rhampt@balena.io
+      author: Ryan H
+      nested: []
+  version: 1.0.34
+  title: ""
+  date: 2022-11-17T11:06:09.800Z
+- version: 1.0.33
+  date: 2022-01-14T15:49:55Z
+  commits:
+    - hash: 08a48731e599358113a2d173349d7c68dd9b769d
+      author: Taro Murao
+      subject: "patch: Changed Application to Fleet"
+      body: null
+- version: 1.0.32
+- date: 2022-01-11T11:56:23Z
+- commits:
+    - hash: f3bb5c52a5edd87700251fa0dce2536c8272bc7b
+- commits:
+    - author: srlowe
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Fix broken link
+- commits:
+    - body: null
+- version: 1.0.31
+- date: 2022-01-11T11:42:02Z
+- commits:
+    - hash: ed7d791709eeb6a4933233bca85a30dc5917097d
+- commits:
+    - author: srlowe
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Fix broken link
+- commits:
+    - body: null
+- version: 1.0.30
+- date: 2021-11-15T21:09:57Z
+- commits:
+    - hash: e6f372fc0e81b651c8030c4ab1da611b193965fe
+- commits:
+    - author: Kyle Harding
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Update balena API url
+- commits:
+    - body: null
+- version: 1.0.29
+- date: 2021-11-08T13:51:36Z
+- commits:
+    - hash: 4e0090483098e6423c17a201aabceda2eccc5d13
+- commits:
+    - author: Kyle Harding
+- commits:
+    - subject: "patch: Fix balena-cloud URL"
+- commits:
+    - body: null
+- version: 1.0.28
+- date: 2021-07-01T09:01:11Z
+- commits:
+    - hash: 6c2b53816197b54eaea89e75b7bcf8d0d7fa916b
+- commits:
+    - author: dfunckt
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Delete .github directory
+- commits:
+    - body: null
+- version: 1.0.27
+- date: 2021-03-25T12:20:14Z
+- commits:
+    - hash: dacc226b533892c8a1bbe3bb07c65c5c219e6a85
+- commits:
+    - author: Jasmine Gilbert
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: jasmine <jasmine@balena.io>
+- commits:
+    - subject: Update incorrect link to Fin dev kit
+- commits:
+    - body: null
+- version: 1.0.26
+- date: 2020-12-21T13:50:37Z
+- commits:
+    - hash: b3f5f2b61ab28a52fb44624aad8069b17e0bf522
+- commits:
+    - author: Kyle Harding
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Kyle Harding <kyle@balena.io>
+- commits:
+    - subject: "README: remove exception for logs cli"
+- commits:
+    - body: |-
+        https://github.com/balena-io/balena-cli/pull/1906
+        This limitation appears to have been fixed in CLI v12.5.0.
+- version: 1.0.25
+- date: 2020-11-10T14:54:16Z
+- commits:
+    - hash: b9d472e2d4312e2d8ca723c30a721547773a6ac8
+- commits:
+    - author: Paulo Castro
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Use the dataDirectory property of balenarc.yml instead of env var
+- commits:
+    - body: null
+- commits:
+    - hash: 9ec8034ceab1ed8c10bc51c11f4574dc85ab0f1a
+- commits:
+    - author: Paulo Castro
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Add `.resinci.yml` file for balena CI configuration
+- commits:
+    - body: null
+- version: 1.0.24
+- date: 2020-06-01T19:20:16Z
+- commits:
+    - hash: 26f32992c950bd249fe0683583309aa1e149a4f9
+- commits:
+    - author: Matthew McGinn
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Matthew McGinn <matthew@balena.io>
+- commits:
+    - subject: "preregister: update command for generating a UUID"
+- commits:
+    - body: null
+- version: 1.0.23
+- date: 2020-05-08T19:33:59Z
+- commits:
+    - hash: 4003800fb70885289063fb947ab486bbf2cca417
+- commits:
+    - author: Gareth Davies
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Gareth Davies <gareth@balena.io>
+- commits:
+    - subject: Removing Gareth from codeowners
+- commits:
+    - body: null
+- version: 1.0.22
+- date: 2020-04-21T23:14:59Z
+- commits:
+    - hash: af7cac94908d6d9f925a5eb97b327cac2d1b584d
+- commits:
+    - author: Hugh Brown
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Hugh Brown <hugh@balena.io>
+- commits:
+    - subject: Minor grammatical fix in preload exercise
+- commits:
+    - body: Minor grammatical fix in preload exercise
+- version: 1.0.21
+- date: 2020-04-20T19:37:10Z
+- commits:
+    - hash: 85e3aa0095aee9e681c722a006153bbf354d00ea
+- commits:
+    - author: Matthew McGinn
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Matthew McGinn <matthew@balena.io>
+- commits:
+    - subject: remove hedss as codeowner
+- commits:
+    - body: null
+- version: 1.0.20
+- date: 2020-02-26T18:10:48Z
+- commits:
+    - hash: 2b7fcaf2a9e7f6d0721837b6fc7b6ac9bdb55ecd
+- commits:
+    - author: Matthew McGinn
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Matthew McGinn <matthew@balena.io>
+- commits:
+    - subject: "tl;dr: add some notes on learning targets"
+- commits:
+    - body: null
+- version: 1.0.19
+- date: 2020-02-25T19:53:11Z
+- commits:
+    - hash: c6a0b88a432ab635733168d89bac6bffeb819896
+- commits:
+    - author: Matthew McGinn
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Matthew McGinn <matthew@balena.io>
+- commits:
+    - subject: small wording updates, mention staging
+- commits:
+    - body: null
+- version: 1.0.18
+- date: 2020-02-20T18:45:29Z
+- commits:
+    - hash: 39bcf0b4ec8eccf41855ccc3f7051004e327147d
+- commits:
+    - author: Josh Bowling
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Josh Bowling <josh@balena.io>
+- commits:
+    - subject: Fix command typo
+- commits:
+    - body: null
+- version: 1.0.17
+- date: 2020-02-19T16:22:49Z
+- commits:
+    - hash: 007423767dc1063689580b9903b6d598ee35b8a2
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "README: Ensure pre-registered UUID matches!"
+- commits:
+    - body: null
+- version: 1.0.16
+- date: 2020-02-12T19:54:22Z
+- commits:
+    - hash: 240971b03b7e55e927829b5297c49abe3880893f
+- commits:
+    - author: Gareth Davies
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Gareth Davies <gareth@balena.io>
+- commits:
+    - subject: "meta: Formatting for external docs"
+- commits:
+    - body: null
+- version: 1.0.15
+- date: 2020-01-18T00:02:40Z
+- commits:
+    - hash: bd29c8e0a2243b26b1c03de3191f5da97ed7cbc1
+- commits:
+    - author: Matthew McGinn
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Matthew McGinn <matthew@balena.io>
+- commits:
+    - subject: minor spelling/formatting updates
+- commits:
+    - body: null
+- version: 1.0.14
+- date: 2020-01-07T10:58:57Z
+- commits:
+    - hash: a728e508a0454dd0cc9191f45754e3ddb6b58f1c
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "org: Change from `balena-io-projects` to `balena-io`"
+- commits:
+    - body: null
+- version: 1.0.13
+- date: 2019-11-22T10:19:36Z
+- commits:
+    - hash: 301cd6a4ff3c172a6610132a3ffd66934e288721
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "readme: Note that Docker should be installed"
+- commits:
+    - body: null
+- version: 1.0.12
+- date: 2019-11-22T01:18:05Z
+- commits:
+    - hash: 333901afb14b1db433c4d6b022c52e4ce644fb2b
+- commits:
+    - author: Gareth Davies
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Gareth Davies <gareth@balena.io>
+- commits:
+    - subject: "docs: edit for balenarc config precendence"
+- commits:
+    - body: null
+- version: 1.0.11
+- date: 2019-11-19T10:52:59Z
+- commits:
+    - hash: 2cf3f2a9ecb790f6ef987352eabb31d5f62144b2
+- commits:
+    - author: Federico Fissore
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Federico Fissore <federico@fissore.org>
+- commits:
+    - subject: Small fixes to README.md
+- commits:
+    - body: null
+- version: 1.0.10
+- date: 2019-11-15T20:59:37Z
+- commits:
+    - hash: 2b79a35d172e1195f51185b2c2e410b3f3a7ca35
+- commits:
+    - author: Gareth Davies
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Gareth Davies <gareth@balena.io>
+- commits:
+    - subject: "docs: Editing header levels"
+- commits:
+    - body: null
+- version: 1.0.9
+- date: 2019-11-15T12:50:44Z
+- commits:
+    - hash: ff875a9f471ba91ca81886b930972cd033397cdd
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "package: Ensure `private` field is a boolean"
+- commits:
+    - body: null
+- version: 1.0.8
+- date: 2019-11-14T16:46:57Z
+- commits:
+    - hash: 1837d9711b1178c6e10fde772360f46effe468a9
+- commits:
+    - author: Gareth Davies
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Gareth Davies gareth@balena.io
+- commits:
+    - subject: Minor content cleanup
+- commits:
+    - body: null
+- version: 1.0.7
+- date: 2019-11-13T09:19:42Z
+- commits:
+    - hash: 88ef3c4af08f6a27ec7154b748eaac4a3f826655
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "readme: Remove bug section now `os configure` is fixed"
+- commits:
+    - body: Relates to https://github.com/balena-io/balena-cli/pull/1507.
+- commits:
+    - hash: e4785dcf98e2a053b1869402a83aa8529f0d30a0
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: Updated post-peer review.
+- commits:
+    - body: null
+- version: 1.0.6
+- date: 2019-11-05T12:33:45Z
+- commits:
+    - hash: 7c5ae6a43d6ae3a0e1b855cdaafa3a00fdb60b56
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "readme/.gitignore: Update README.md and add a .gitignore"
+- commits:
+    - body: |-
+        Adds some extra details, fixes a problem with the version
+        number in section 5.2 and adds a .gitignore file to avoid
+        the potential of `balena push`ing everything in the repo
+        should an image have been downloaded.
+- version: 1.0.5
+- date: 2019-10-30T12:40:22Z
+- commits:
+    - hash: 63cc9d16b51b085d2359d291232eb7911d14587f
+- commits:
+    - author: Matthew McGinn
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Matthew McGinn <matthew@balena.io>
+- commits:
+    - subject: "meta: add CODEOWNERS"
+- commits:
+    - body: null
+- version: 1.0.4
+- date: 2019-10-30T11:51:11Z
+- commits:
+    - hash: 4ea802a5de90b8cc2b2a57df26f92c56ee19b423
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "readme: Fix headings for preload section"
+- commits:
+    - body: null
+- version: 1.0.3
+- date: 2019-10-30T09:59:17Z
+- commits:
+    - hash: ff2f9c0f2548e39e2b60a36e9010f80301b94697
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "readme: `balena os initialize` now correctly works"
+- commits:
+    - body: null
+- version: 1.0.2
+- date: 2019-10-30T09:21:18Z
+- commits:
+    - hash: 6faf5977a5e49dbd7b9384242262c03fd33c67ac
+- commits:
+    - author: rahul-thakoor
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Rahul Thakoor <rahul@balena.io>
+- commits:
+    - subject: Fix instructions for moving devices
+- commits:
+    - body: null
+- commits:
+    - hash: a225c9a5a13ebfe5ab74313fc1e311b6dbc6fb48
+- commits:
+    - author: Rahul Thakoor
+- commits:
+    - subject: Merge branch 'master' into fix-move-application-description
+- commits:
+    - body: null
+- version: 1.0.1
+- date: 2019-10-29T16:01:10Z
+- commits:
+    - hash: 2551ad2e46dce1b29b4a1dfe0b1d9444541c4bc8
+- commits:
+    - author: James Harton
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: James Harton jamesh@balena.io
+- commits:
+    - subject: "dockerfile: Make `rm` of files in the `/tmp` directory recursive."
+- commits:
+    - body: null
+- version: 1.0.0
+- date: 2019-10-11T09:48:44Z
+- commits:
+    - hash: d6999522d14d5b3cd87702b4768688bec595ac55
+- commits:
+    - author: Heds Simons
+- commits:
+    - footers:
+        change-type: major
+- commits:
+    - footers:
+        signed-off-by: Heds Simons <heds@balena.io>
+- commits:
+    - subject: "masterclass: Initial PR for balenaCLI advanced masterclass"
+- commits:
+    - body: null

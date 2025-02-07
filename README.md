@@ -27,7 +27,7 @@ If you have any questions about this masterclass as you proceed through it, or w
 It is assumed that the reader has access to the following:
 
 - A locally cloned copy of this repository [Balena CLI Advanced Masterclass](https://github.com/balena-io/balena-cli-advanced-masterclass) using either `git clone https://github.com/balena-io/balena-cli-advanced-masterclass.git` or by downloading the ZIP file (from 'Code'->'Download ZIP') and then unzipping it to a suitable directory
-- A balena supported device, such as a [Raspberry Pi 3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) or an [Intel NUC](https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc.html). If you don't have a device, you can emulate an Intel NUC by installing VirtualBox and following [this guide](https://www.balena.io/blog/no-hardware-use-virtualbox/). In this guide, we'll be using a Raspberry Pi 4 device.
+- A balena supported device, such as a [Raspberry Pi 5](https://www.raspberrypi.org/products/raspberry-pi-5/) or an [Intel NUC](https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc.html). If you don't have a device, you can emulate an Intel NUC by installing VirtualBox and following [this guide](https://www.balena.io/blog/no-hardware-use-virtualbox/). In this guide, we'll be using a Raspberry Pi 4 device.
 - A suitable text editor for developing code on your development platform (e.g. [Visual Code](https://code.visualstudio.com/))
 - A suitable shell environment for command execution (such as `bash` or `zsh`)
 - A [balenaCloud](https://dashboard.balena-cloud.com/signup) account and a [balenaCloud staging](https://dashboard.balena-staging.com/signup) account
@@ -99,7 +99,7 @@ balenaUrl: 'balena-staging.com'
 Now try listing the fleets from the staging environment again:
 
 ```shell
-$ balena fleets
+$ balena fleet list
  Id     App name            Slug                                     Device type     Device count Online devices
  ────── ─────────────────── ──────────────────────────────────────── ─────────────── ──────────── ──────────────
  146558 fleetOne            ryanh/fleetone                    intel-nuc       0            0
@@ -182,14 +182,14 @@ You can now switch between environments by changing directory to the one with th
 
 ```shell
 $ cd ~/balenaStaging
-$ balena fleets
+$ balena fleet list
  Id     App name            Slug                                     Device type     Device count Online devices
  ────── ─────────────────── ──────────────────────────────────────── ─────────────── ──────────── ──────────────
  146558 fleetOne            ryanh/fleetone                    intel-nuc       0            0
  146559 fleetTwo            ryanh/fleettwo                    raspberrypi4-64 0            0
 
 $ cd ~/balenaProduction
-$ balena fleets
+$ balena fleet list
  Id      App name       Slug                 Device type     Device count Online devices
  ─────── ────────────── ──────────────────── ─────────────── ──────────── ──────────────
  1913403 balena-health  ryanh/balena-health  raspberrypi4-64 1            0
@@ -234,7 +234,7 @@ We should already have a device connecting to our previous 'cliFleet' (from the 
 
 ```shell
 $ cd ~/balenaProduction
-$ balena devices
+$ balena device list
 ID      UUID    DEVICE NAME         DEVICE TYPE     FLEET              STATUS IS ONLINE SUPERVISOR VERSION OS VERSION         DASHBOARD URL
 9272148 ee13198 wide-street         raspberrypi4-64 ryanh/clifleet     Idle   true      14.0.14            balenaOS 2022.10.0 https://dashboard.balena-cloud.com/devices/ee13198bbda819053446a47a9ad98853/summary
 ```
@@ -299,11 +299,11 @@ For a device running a development image, you can use `balena leave` and `balena
 
 First, provision a device using a development image. You can do this using the balenaCloud dashboard's 'Add Device' downloading a 'Development' edition image from the `cliFleet` Fleet page. Provision your device with this image using either [balenaEtcher](https://www.balena.io/etcher/) or the [balena CLI].
 
-Once the device is provisioned and has connected to the balena network, discover its hostname or IP address by using `balena devices`:
+Once the device is provisioned and has connected to the balena network, discover its hostname or IP address by using `balena device list`:
 
 ```shell
 $ cd ~/balenaProduction
-$ balena devices
+$ balena device list
 ID      UUID    DEVICE NAME         DEVICE TYPE     FLEET              STATUS IS ONLINE SUPERVISOR VERSION OS VERSION         DASHBOARD URL
 9272148 ee13198 wide-street         raspberrypi4-64 ryanh/clifleet     Idle   true      14.0.14            balenaOS 2022.10.0 https://dashboard.balena-cloud.com/devices/ee13198bbda819053446a47a9ad98853/summary
 
@@ -371,7 +371,7 @@ We can now check the devices on the staging environment to ensure it's joined su
 
 ```shell
 $ cd ~/balenaStaging
-$ balena devices
+$ balena device list
 ID     UUID    DEVICE NAME               DEVICE TYPE           FLEET                                    STATUS      IS ONLINE SUPERVISOR VERSION OS VERSION            DASHBOARD URL
 446451 ee13198 steamed-thunder           raspberrypi4-64       ryanh/stagingclifleet             Idle        false     14.0.14            balenaOS 2022.10.0    https://dashboard.balena-staging.com/devices/ee13198bbda819053446a47a9ad98853/summary
 ```
@@ -525,7 +525,7 @@ Note that you _must_ supply the device type, although the drive to write to is o
 Once provisioned, safely remove the SD card from you machine, insert it into your device and power it on. Shortly afterwards, it will connect to balenaCloud:
 
 ```shell
-$ balena devices
+$ balena device list
 ID      UUID    DEVICE NAME         DEVICE TYPE     FLEET              STATUS IS ONLINE SUPERVISOR VERSION OS VERSION         DASHBOARD URL
 9272981 0b9df5c average-darkness    raspberrypi4-64 ryanh/clifleet     Idle   true      14.0.14            balenaOS 2022.10.0 https://dashboard.balena-cloud.com/devices/0b9df5cf5a21f8ae903b4e8eb0d94ad9/summary
 ```
@@ -605,7 +605,7 @@ $ balena push cliFleet
 Once built and pushed to the device, you should see the following logs:
 
 ```shell
-$ balena logs 0b9df5c
+$ balena device logs 0b9df5c
 [Logs]    [11/11/2022, 10:38:35 AM] Installing service 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
 [Logs]    [11/11/2022, 10:38:35 AM] Installed service 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
 [Logs]    [11/11/2022, 10:38:35 AM] Starting service 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
@@ -624,10 +624,10 @@ As you can see in `helloworld.js`, it looks like if we set the `LOG_DEBUG` envir
 $ balena env add LOG_DEBUG true --fleet cliFleet
 ```
 
-Now go to the dashboard for the `cliFleet` Fleet, and select 'variables'. 'Add' a new variable, called `DASH_VAR` and set it to `from-dash`. To verify we've now set our variables, let's use `balena envs` which will show all the environment variables set for our Fleet:
+Now go to the dashboard for the `cliFleet` Fleet, and select 'variables'. 'Add' a new variable, called `DASH_VAR` and set it to `from-dash`. To verify we've now set our variables, let's use `balena env list` which will show all the environment variables set for our Fleet:
 
 ```shell
-$ balena envs --fleet cliFleet
+$ balena env list --fleet cliFleet
 ID     NAME      VALUE     FLEET          SERVICE
 676489 DASH_VAR  from-dash ryanh/clifleet *
 676488 LOG_DEBUG true      ryanh/clifleet *
@@ -636,7 +636,7 @@ ID     NAME      VALUE     FLEET          SERVICE
 As you can see, both variables now show up in our list. However, if we now list the logs for the device, we'll see something else:
 
 ```shell
-$ balena logs 0b9df5c
+$ balena device logs 0b9df5c
 [Logs]    [11/11/2022, 10:41:39 AM] Killed service 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
 [Logs]    [11/11/2022, 10:41:40 AM] Installing service 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
 [Logs]    [11/11/2022, 10:41:41 AM] Installed service 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
@@ -654,7 +654,7 @@ When we set the environment variable, the Supervisor on the device noted that th
 
 ```shell
 $ balena env rm 676488 --yes
-$ balena envs --fleet cliFleet
+$ balena env list --fleet cliFleet
 ID     NAME     VALUE     FLEET          SERVICE
 676489 DASH_VAR from-dash ryanh/clifleet *
 ```
@@ -664,7 +664,7 @@ Note that we used the `--yes` switch to force the deletion of the variable. With
 Wait a little while to let the Supervisor see that the environment variable has been deleted, and then look at the logs again:
 
 ```shell
-$ balena logs 0b9df5c
+$ balena device logs 0b9df5c
 [Logs]    [11/11/2022, 10:45:07 AM] Service exited 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
 [Logs]    [11/11/2022, 10:45:07 AM] Killed service 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
 [Logs]    [11/11/2022, 10:45:08 AM] Installing service 'main sha256:2a357357dc8ac0cf055418c5d8e9ebfe6d499e5a8e6dfd378c76b1b355e8bf37'
@@ -722,7 +722,7 @@ If we hadn't specified the `latest` commit, we'd have been given an interactive 
 
 Now provision your device using the resulting image using `balena os initialize` or balenaEtcher. Once booted look at the logs for that device and notice that no download ocurred, and the Supervisor immediately started the preloaded application.
 
-`balena preload` has a wealth of switches, and can modify the device significantly. It's well worth familiarizing yourself with the options [here](https://github.com/balena-io/balena-cli/blob/master/docs/balena-cli.md#preload).
+`balena preload` has a wealth of switches, and can modify the device significantly. It's well worth familiarizing yourself with the options [here](https://docs.balena.io/reference/balena-cli/latest/#preload).
 
 #### 5.2 Preregistering a Device
 
@@ -733,7 +733,7 @@ We'll generate a unique key for the device first, which we'll then use to modify
 We'll verify that we're registering a device by first listing the devices currently associated with the `cliFleet` Fleet:
 
 ```shell
-$ balena devices --fleet cliFleet
+$ balena device list --fleet cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE     FLEET          STATUS IS ONLINE SUPERVISOR VERSION OS VERSION         DASHBOARD URL
 9272981 0b9df5c average-darkness raspberrypi4-64 ryanh/clifleet Idle   true     14.0.14            balenaOS 2022.10.0 https://dashboard.balena-cloud.com/devices/0b9df5cf5a21f8ae903b4e8eb0d94ad9/**summary**
 ```
@@ -768,7 +768,7 @@ https://www.balena.io/docs/reference/balena-cli/#support-faq-and-troubleshooting
 Now we'll look at the device list for the Fleet again:
 
 ```shell
-$ balena devices --fleet cliFleet
+$ balena device list --fleet cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE     FLEET          STATUS IS ONLINE SUPERVISOR VERSION OS VERSION         DASHBOARD URL
 9272981 0b9df5c average-darkness raspberrypi4-64 ryanh/clifleet Idle   true      14.0.14            balenaOS 2022.10.0 https://dashboard.balena-cloud.com/devices/0b9df5cf5a21f8ae903b4e8eb0d94ad9/summary
 9273485 f494e3f tense-moon       raspberrypi4-64 ryanh/clifleet N/a    false     N/a                N/a                https://dashboard.balena-cloud.com/devices/f494e3ff06df7dc5629208b2f2b01483/summary
@@ -813,7 +813,7 @@ Finally write it to the SD card, either using `balena os initialize` or balenaEt
 After it's been provisioned, power up the device again. You'll soon see our preregistered device come online:
 
 ```shell
-$ balena devices --fleet cliFleet
+$ balena device list --fleet cliFleet
 ID      UUID    DEVICE NAME      DEVICE TYPE     FLEET          STATUS IS ONLINE SUPERVISOR VERSION OS VERSION         DASHBOARD URL
 9272981 0b9df5c average-darkness raspberrypi4-64 ryanh/clifleet Idle   false     14.0.14            balenaOS 2022.10.0 https://dashboard.balena-cloud.com/devices/0b9df5cf5a21f8ae903b4e8eb0d94ad9/summary
 9273485 f494e3f tense-moon       raspberrypi4-64 ryanh/clifleet Idle   true      14.0.14            balenaOS 2022.10.0 https://dashboard.balena-cloud.com/devices/f494e3ff06df7dc5629208b2f2b01483/summary
@@ -832,7 +832,7 @@ Once the device is online and connected to the balenaCloud infrastructure,
 verify this with:
 
 ```shell
-$ balena devices --fleet cliFleet
+$ balena device list --fleet cliFleet
 ID      UUID    DEVICE NAME DEVICE TYPE     FLEET          STATUS IS ONLINE SUPERVISOR VERSION OS VERSION       DASHBOARD URL
 9273603 b397534 still-sun   raspberrypi4-64 ryanh/clifleet Idle   true      14.0.8             balenaOS 2.99.27 https://dashboard.balena-cloud.com/devices/b3975341060c1c0f6297576092924fbf/summary
 ```
@@ -853,7 +853,7 @@ If we hadn't passed the `--version` switch, balena CLI would have asked us to ch
 Finally, let's run `balena devices` again to see the new version of the device:
 
 ```shell
-$ balena devices --fleet cliFleet
+$ balena device list --fleet cliFleet
 ID      UUID    DEVICE NAME DEVICE TYPE     FLEET          STATUS IS ONLINE SUPERVISOR VERSION OS VERSION       DASHBOARD URL
 9273603 b397534 still-sun   raspberrypi4-64 ryanh/clifleet Idle   true      14.3.0             balenaOS 2.106.2 https://dashboard.balena-cloud.com/devices/b3975341060c1c0f6297576092924fbf/summary
 ```

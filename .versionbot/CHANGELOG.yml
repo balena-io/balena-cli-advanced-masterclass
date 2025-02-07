@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update commands for CLI v20
+      hash: 6c7055afb766fd478efbef54215549c05e47ce58
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: myarmolinsky
+      nested: []
+  version: 1.0.35
+  title: ""
+  date: 2025-02-07T13:13:57.829Z
+- commits:
     - subject: Reworked this guide and verified the steps and output from each step
         and brought over to flowzone
       hash: 2a38a79c755ef3e4c6c2038a8a5ea4fb973367f0

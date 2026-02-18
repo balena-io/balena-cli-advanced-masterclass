@@ -6,6 +6,11 @@ on:
     branches:
       - "master"
 
+permissions:
+  id-token: write
+  contents: read
+  packages: read
+
 jobs:
   flowzone:
     name: Flowzone
